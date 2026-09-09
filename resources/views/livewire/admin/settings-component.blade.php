@@ -4,13 +4,13 @@
             <div class="card">
                 @include('livewire.admin.partials._alerts')
                 <div class="card-header py-3 bg-transparent">
-                    <h5 class="mb-0">Settings</h5>
+                    <h5 class="mb-0">{{ __('Settings') }}</h5>
                 </div>
                 <div class="card-body">
                     <div class="border p-3 rounded">
                         <form wire:submit.prevent="save_settings" class="row g-3">
                             <div class="col-12">
-                                <label class="form-label">Phone Number</label>
+                                <label class="form-label">{{ __('Phone Number') }}</label>
                                 <input type="text" class="form-control @error('phone_number') is-invalid @enderror"
                                     placeholder="+0000000000" wire:model="phone_number">
                                 @error('phone_number')
@@ -18,7 +18,7 @@
                                 @enderror
                             </div>
                             <div class="col-12">
-                                <label class="form-label">Address</label>
+                                <label class="form-label">{{ __('Address') }}</label>
                                 <input type="text" class="form-control @error('address') is-invalid @enderror"
                                     placeholder="Manchester, Kentucky 39495" wire:model="address">
                                 @error('address')
@@ -26,7 +26,7 @@
                                 @enderror
                             </div>
                             <div class="col-12">
-                                <label class="form-label">Website Name</label>
+                                <label class="form-label">{{ __('Website Name') }}</label>
                                 <input type="text" class="form-control @error('web_name') is-invalid @enderror"
                                     placeholder="DigitalStore" wire:model="web_name">
                                 @error('web_name')
@@ -34,7 +34,7 @@
                                 @enderror
                             </div>
                             <div class="col-12">
-                                <label class="form-label">Logo</label>
+                                <label class="form-label">{{ __('Logo') }}</label>
                                 <input type="file" class="form-control @error('logo') is-invalid @enderror"
                                     wire:model="logo">
                                 @error('logo')
@@ -47,7 +47,7 @@
                                 </div>
                             </div>
                             <div class="col-12">
-                                <label class="form-label">Favicon</label>
+                                <label class="form-label">{{ __('Favicon') }}</label>
                                 <input type="file" class="form-control @error('favicon') is-invalid @enderror"
                                     wire:model="favicon">
                                 @error('favicon')
@@ -60,7 +60,7 @@
                                 </div>
                             </div>
                             <div class="col-12">
-                                <label class="form-label">Email</label>
+                                <label class="form-label">{{ __('Email') }}</label>
                                 <input type="email" class="form-control @error('email') is-invalid @enderror"
                                     placeholder="example@email.com" wire:model="email">
                                 @error('email')
@@ -68,7 +68,7 @@
                                 @enderror
                             </div>
                             <div class="col-12">
-                                <label class="form-label">Map Iframe Link</label>
+                                <label class="form-label">{{ __('Map Iframe Link') }}</label>
                                 <input type="text"
                                     class="form-control @error('iframe_map_link') is-invalid @enderror"
                                     placeholder="https://www.google.com/maps/embed?pb=!.............."
@@ -78,7 +78,7 @@
                                 @enderror
                             </div>
                             <div class="col-12">
-                                <label class="form-label">Currency Logo</label>
+                                <label class="form-label">{{ __('Currency Logo') }}</label>
                                 <input type="text"
                                     class="form-control @error('currency_unicode') is-invalid @enderror"
                                     placeholder="$"
@@ -121,7 +121,7 @@
                                 @enderror
                             </div>
                             <div class="col-12">
-                                <button class="btn btn-primary px-4">Save Setting</button>
+                                <button class="btn btn-primary px-4">{{ __('Save Setting') }}</button>
                             </div>
                         </form>
                     </div>
@@ -134,7 +134,7 @@
 @script
     <script>
         $('#delivery_policy').summernote({
-            placeholder: 'Add your Delivery Policy here',
+            placeholder: '{{ __('Add your Delivery Policy here') }}',
             tabsize: 2,
             height: 300,
             callbacks: {
@@ -145,7 +145,7 @@
         });
 
         $('#return_policy').summernote({
-            placeholder: 'Add your Return Policy here',
+            placeholder: '{{ __('Add your Return Policy here') }}',
             tabsize: 2,
             height: 300,
             callbacks: {
@@ -156,7 +156,7 @@
         });
 
         $('#privacy_policy').summernote({
-            placeholder: 'Add your Privacy Policy here',
+            placeholder: '{{ __('Add your Privacy Policy here') }}',
             tabsize: 2,
             height: 300,
             callbacks: {

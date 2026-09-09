@@ -7,26 +7,26 @@
                     <tbody>
                         <tr class="table-row table-top-row">
                             <td class="table-wrapper wrapper-product">
-                                <h5 class="table-heading">PRODUCT</h5>
+                                <h5 class="table-heading">{{ __('PRODUCT') }}</h5>
                             </td>
                             <td class="table-wrapper">
                                 <div class="table-wrapper-center">
-                                    <h5 class="table-heading">PRICE</h5>
+                                    <h5 class="table-heading">{{ __('PRICE') }}</h5>
                                 </div>
                             </td>
                             <td class="table-wrapper">
                                 <div class="table-wrapper-center">
-                                    <h5 class="table-heading">QUANTITY</h5>
+                                    <h5 class="table-heading">{{ __('QUANTITY') }}</h5>
                                 </div>
                             </td>
                             <td class="table-wrapper wrapper-total">
                                 <div class="table-wrapper-center">
-                                    <h5 class="table-heading">TOTAL</h5>
+                                    <h5 class="table-heading">{{ __('TOTAL') }}</h5>
                                 </div>
                             </td>
                             <td class="table-wrapper">
                                 <div class="table-wrapper-center">
-                                    <h5 class="table-heading">ACTION</h5>
+                                    <h5 class="table-heading">{{ __('ACTION') }}</h5>
                                 </div>
                             </td>
                         </tr>
@@ -97,8 +97,8 @@
                 </table>
             </div>
             <div class="wishlist-btn cart-btn">
-                <a href="javascript:;" wire:click="clearCart" class="clean-btn">Clear Cart</a>
-                <a href="{{ route('user.checkout') }}" class="shop-btn">Proceed to Checkout</a>
+                <a href="javascript:;" wire:click="clearCart" class="clean-btn">{{ __('Clear Cart') }}</a>
+                <a href="{{ route('user.checkout') }}" class="shop-btn">{{ __('Proceed to Checkout') }}</a>
             </div>
         </div>
     </section>

@@ -46,9 +46,9 @@ class ProfileComponent extends Component
         $user->email = $this->email;
         $user->phone_number = $this->phone_number;
         if ($user->save()) {
-            session()->flash('success', 'Profile has been updated successfully!');
+            session()->flash('success', __('Profile has been updated successfully!'));
         } else {
-            session()->flash('error', 'Something went wrong!');
+            session()->flash('error', __('Something went wrong!'));
         }
     }
 

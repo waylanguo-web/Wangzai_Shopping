@@ -20,20 +20,20 @@ class CartComponent extends Component
         foreach ($cartItems as $cartItem) {
             $cartItem->delete();
         }
-        session()->flash('success', 'Cart has been cleared successfully!');
+        session()->flash('success', __('Cart has been cleared successfully!'));
     }
     public function removeItemFromCart($id)
     {
         $cartItem = Cart::find($id);
         $cartItem->delete();
-        session()->flash('success', 'Item has been removed from cart successfully!');
+        session()->flash('success', __('Item has been removed from cart successfully!'));
     }
     public function increaseQuantity($id)
     {
         $cart = Cart::find($id);
         $cart->quantity = $cart->quantity + 1;
         $cart->save();
-        session()->flash('success', 'Cart item quantity has been updated successfully!');
+        session()->flash('success', __('Cart item quantity has been updated successfully!'));
     }
     public function decreaseQuantity($id)
     {
@@ -41,9 +41,9 @@ class CartComponent extends Component
         if ($cart->quantity > 1) {
             $cart->quantity = $cart->quantity - 1;
             $cart->save();
-            session()->flash('success', 'Cart item quantity has been updated successfully!');
+            session()->flash('success', __('Cart item quantity has been updated successfully!'));
         } else {
-            session()->flash('error', 'Cart item quantity can not be less than 1!');
+            session()->flash('error', __('Cart item quantity can not be less than 1!'));
         }
     }
     

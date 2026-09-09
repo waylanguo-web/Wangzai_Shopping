@@ -11,7 +11,7 @@ class AllProductsComponent extends Component
     {
         $product = Product::find($id);
         $product->delete();
-        session()->flash('success', 'Product has been deleted successfully!');
+        session()->flash('success', __('Product has been deleted successfully!'));
     }
     public function editeProduct($id)
     {

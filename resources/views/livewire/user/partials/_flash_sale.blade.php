@@ -1,7 +1,7 @@
 <section class="product best-product">
     <div class="container">
         <div class="section-title">
-            <h5>Flash Sale</h5>
+            <h5>{{ __('Flash Sale') }}</h5>
         </div>
         <div class="best-product-section">
             <div class="row g-4">

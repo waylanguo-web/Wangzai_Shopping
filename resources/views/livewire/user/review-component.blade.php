@@ -24,16 +24,15 @@
                             {{ $review->product->name }}
                         </a>
                         <p>
-                            <textarea class="form-control" placeholder="You Reviewed: {{ $review->review }}" wire:model="review"></textarea>
+                            <textarea class="form-control" placeholder="{{ __('You Reviewed:') }} {{ $review->review }}" wire:model="review"></textarea>
                             <select class="form-select mb-2 mt-2" wire:model="rating">
-                                <option value="1">1 Star</option>
-                                <option value="2">2 Star</option>
-                                <option value="3">3 Star</option>
-                                <option value="4">4 Star</option>
-                                <option value="5">5 Star</option>
+                                <option value="1">{{ __('1 Star') }}</option>
+                                <option value="2">{{ __('2 Star') }}</option>
+                                <option value="3">{{ __('3 Star') }}</option>
+                                <option value="4">{{ __('4 Star') }}</option>
+                                <option value="5">{{ __('5 Star') }}</option>
                             </select>
-                            <button wire:click="updateReview({{ $review->id }})" class="btn btn-success">Update
-                                Review</button>
+                            <button wire:click="updateReview({{ $review->id }})" class="btn btn-success">{{ __('Update Review') }}</button>
                         </p>
                     </div>
                 </div>

@@ -111,12 +111,12 @@
                     <div class="col-lg-3 col-sm-6">
                         <div class="links">
                             <h4 class="footer-heading footer-title">
-                                Useful Links
+                                {{ __('Useful Links') }}
                             </h4>
                             <div class="footer-link useful-link">
                                 <ul>
-                                    <li><a href="{{route('user.delivery-returns')}}">Delivery & Returns</a></li>
-                                    <li><a href="{{route('user.privacy-policy')}}">Privacy Policy</a></li>
+                                    <li><a href="{{route('user.delivery-returns')}}">{{ __('Delivery & Returns') }}</a></li>
+                                    <li><a href="{{route('user.privacy-policy')}}">{{ __('Privacy Policy') }}</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -124,7 +124,7 @@
                     <div class="col-lg-3 col-sm-6">
                         <div class="contact-info">
                             <h4 class="footer-heading footer-title">
-                                Contact Info
+                                {{ __('Contact Info') }}
                             </h4>
                             <div class="footer-link contact-link">
                                 <div class="address">
@@ -152,7 +152,7 @@
                                         </span>
                                     </div>
                                     <div class="details">
-                                        <h4 class="footer-heading">Address:</h4>
+                                        <h4 class="footer-heading">{{ __('Address:') }}</h4>
                                         <p>{{ $address }}</p>
                                     </div>
                                 </div>
@@ -178,7 +178,7 @@
                                         </span>
                                     </div>
                                     <div class="details">
-                                        <h4 class="footer-heading">Phone:</h4>
+                                        <h4 class="footer-heading">{{ __('Phone:') }}</h4>
                                         <p>{{ $phone_number }}</p>
                                     </div>
                                 </div>

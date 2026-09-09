@@ -52,9 +52,9 @@ class AboutSettingComponent extends Component
                 $about->image = $imageLocation;
             }
             if ($about->save()) {
-                session()->flash('success', 'About setting has been updated successfully!');
+                session()->flash('success', __('About setting has been updated successfully!'));
             } else {
-                session()->flash('error', 'Something went wrong!');
+                session()->flash('error', __('Something went wrong!'));
             }
         }
         
@@ -68,9 +68,9 @@ class AboutSettingComponent extends Component
             $imageLocation = $this->image->storeAs('about', $imageName, 'public');
             $about->image = $imageLocation;
             if ($about->save()) {
-                session()->flash('success', 'About setting has been created successfully!');
+                session()->flash('success', __('About setting has been created successfully!'));
             } else {
-                session()->flash('error', 'Something went wrong!');
+                session()->flash('error', __('Something went wrong!'));
             }
         }
     }

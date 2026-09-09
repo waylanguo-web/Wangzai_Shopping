@@ -1,17 +1,17 @@
 <div>
     @include('livewire.user.partials._alerts')
     <div class="product-size">
-        <P class="size-title">Package</P>
+        <P class="size-title">{{ __('Package') }}</P>
         <select class="form-select form-select-lg mb-3" aria-label="Default select example"
             wire:model="subscription_id">
-            <option selected>Select Your Package</option>
+            <option selected>{{ __('Select Your Package') }}</option>
             @foreach ($product->subscription as $subscription)
                 <option value="{{ $subscription->id }}">
                     {{ $subscription->name }}
                     @if ($subscription->sale_price)
-                        <span> - Price : {{ $subscription->sale_price }}</span>
+                        <span> - {{ __('Price :') }} {{ $subscription->sale_price }}</span>
                     @else
-                        <span> - Price : {{ $subscription->regular_price }}</span>
+                        <span> - {{ __('Price :') }} {{ $subscription->regular_price }}</span>
                     @endif
                 </option>
             @endforeach
@@ -39,7 +39,7 @@
                         fill="white" />
                 </svg>
             </span>
-            <span>Add to Cart</span>
+            <span>{{ __('Add to Cart') }}</span>
         </a>
     </div>
 </div>

@@ -8,5 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class PaymentSetting extends Model
 {
     use HasFactory;
-    protected $fillable = ['name', 'note', 'number'];
+    protected $fillable = ['name', 'note', 'number', 'type', 'qr_image', 'enabled'];
 }

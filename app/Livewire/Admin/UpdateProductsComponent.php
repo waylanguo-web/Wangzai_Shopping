@@ -30,18 +30,18 @@ class UpdateProductsComponent extends Component
         $image = Image::find($id);
         unlink('storage/'.$image->image);
         if ($image->delete()) {
-            session()->flash('success', 'Image has been deleted successfully!');
+            session()->flash('success', __('Image has been deleted successfully!'));
         } else {
-            session()->flash('error', 'Something went wrong!');
+            session()->flash('error', __('Something went wrong!'));
         }
     }
     public function deleteSubscription($id)
     {
         $subscription = Subscription::find($id);
         if ($subscription->delete()) {
-            session()->flash('success', 'Subscription has been deleted successfully!');
+            session()->flash('success', __('Subscription has been deleted successfully!'));
         } else {
-            session()->flash('error', 'Something went wrong!');
+            session()->flash('error', __('Something went wrong!'));
         }
     }
 
@@ -49,7 +49,8 @@ class UpdateProductsComponent extends Component
     {
         $product = Product::find($this->product->id);
         $product->name = $this->name;
-        $product->slug = Str::slug($this->name);
+        $slug = Str::slug($this->name);
+        $product->slug = $slug ?: ('product-' . $product->id);
         $product->description = $this->description;
         $product->category_id = $this->category_id;
         $product->stock = $this->stock;
@@ -71,9 +72,9 @@ class UpdateProductsComponent extends Component
                     $db_image->save();
                 }
             }
-            session()->flash('success', 'Product has been updated successfully!');
+            session()->flash('success', __('Product has been updated successfully!'));
         } else {
-            session()->flash('error', 'Something went wrong!');
+            session()->flash('error', __('Something went wrong!'));
         }
     }
 
@@ -93,7 +94,7 @@ class UpdateProductsComponent extends Component
         $this->subscription_name = '';
         $this->regular_price = '';
         $this->sale_price = '';
-        session()->flash('success', 'Subscription has been added successfully!');
+        session()->flash('success', __('Subscription has been added successfully!'));
     }
 
     public function render()

@@ -26,7 +26,8 @@ class AddProductsComponent extends Component
     {
         $product = new Product();
         $product->name = $this->name;
-        $product->slug = Str::slug($this->name);
+        $slug = Str::slug($this->name);
+        $product->slug = $slug ?: ('product-' . time());
         $product->description = $this->description;
         $product->category_id = $this->category_id;
         $product->stock = $this->stock;
@@ -47,9 +48,9 @@ class AddProductsComponent extends Component
                 $db_image->product_id = $product->id;
                 $db_image->save();
             }
-            session()->flash('success', 'Product has been created successfully!');
+            session()->flash('success', __('Product has been created successfully!'));
         } else {
-            session()->flash('error', 'Something went wrong!');
+            session()->flash('error', __('Something went wrong!'));
         }
     }
     public function add_subscription()
@@ -68,7 +69,7 @@ class AddProductsComponent extends Component
         $this->subscription_name = '';
         $this->regular_price = '';
         $this->sale_price = '';
-        session()->flash('success', 'Subscription has been added successfully!');
+        session()->flash('success', __('Subscription has been added successfully!'));
     }
     public function render()
     {

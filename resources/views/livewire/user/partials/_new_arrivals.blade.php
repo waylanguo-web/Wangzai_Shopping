@@ -1,7 +1,7 @@
 <section class="product arrival">
     <div class="container">
         <div class="section-title">
-            <h5>NEW ARRIVALS</h5>
+            <h5>{{ __('NEW ARRIVALS') }}</h5>
         </div>
         <div class="arrival-section">
             <div class="row g-5">
@@ -14,10 +14,10 @@
                                     @if (Auth::user() &&
                                             Auth::user()->wishlist()->whereProductId($product->id)->first())
                                         <i class="fa-solid fa-heart fa-2xl" style="color: red"
-                                            title="Available in your wishlist"></i>
+                                            title="{{ __('Available in your wishlist') }}"></i>
                                     @else
                                         <a href="javascript:;" wire:click="addToWishList({{ $product->id }})">
-                                            <i class="fa-solid fa-heart fa-2xl" title="Add to wishlist"></i>
+                                            <i class="fa-solid fa-heart fa-2xl" title="{{ __('Add to wishlist') }}"></i>
                                         </a>
                                     @endif
                                 </div>

@@ -37,12 +37,12 @@
         <div class="cart-wrapper-section">
             <div class="wrapper-line"></div>
             <div class="wrapper-subtotal">
-                <h5 class="wrapper-title">Subtotal</h5>
+                <h5 class="wrapper-title">{{ __('Subtotal') }}</h5>
                 <h5 class="wrapper-title">{{$currency_symbol}}{{ $subtotal }}</h5>
             </div>
             <div class="cart-btn">
-                <a href="{{ route('user.cart') }}" class="shop-btn view-btn">View Cart</a>
-                <a href="{{ route('user.checkout') }}" class="shop-btn checkout-btn">Checkout Now</a>
+                <a href="{{ route('user.cart') }}" class="shop-btn view-btn">{{ __('View Cart') }}</a>
+                <a href="{{ route('user.checkout') }}" class="shop-btn checkout-btn">{{ __('Checkout Now') }}</a>
             </div>
         </div>
     </div>

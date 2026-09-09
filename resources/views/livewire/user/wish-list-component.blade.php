@@ -7,11 +7,11 @@
                     <tbody>
                         <tr class="table-row table-top-row">
                             <td class="table-wrapper wrapper-product">
-                                <h5 class="table-heading">PRODUCT</h5>
+                                <h5 class="table-heading">{{ __('PRODUCT') }}</h5>
                             </td>
                             <td class="table-wrapper">
                                 <div class="table-wrapper-center">
-                                    <h5 class="table-heading">ACTION</h5>
+                                    <h5 class="table-heading">{{ __('ACTION') }}</h5>
                                 </div>
                             </td>
                         </tr>
@@ -52,8 +52,8 @@
                 </table>
             </div>
             <div class="wishlist-btn">
-                <a href="" wire:click="clearAllWishlist" class="clean-btn">Clean Wishlist</a>
-                <a href="#" class="shop-btn">View Cards</a>
+                <a href="" wire:click="clearAllWishlist" class="clean-btn">{{ __('Clean Wishlist') }}</a>
+                <a href="#" class="shop-btn">{{ __('View Cards') }}</a>
             </div>
         </div>
     </section>

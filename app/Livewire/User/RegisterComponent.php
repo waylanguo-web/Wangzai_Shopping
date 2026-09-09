@@ -36,12 +36,12 @@ class RegisterComponent extends Component
         $user->phone_number = $this->phone;
         $user->password = Hash::make($this->password);
         if ($user->save()) {
-            session()->flash('success', 'Registration is successfully.');
+            session()->flash('success', __('Registration is successfully.'));
         } else {
-            session()->flash('error', 'Something went wrong! Please try again.');
+            session()->flash('error', __('Something went wrong! Please try again.'));
         }
 
-        return redirect()->route('login')->with('success', 'Registration was successfull, Please login to your account.');
+        return redirect()->route('login')->with('success', __('Registration was successfull, Please login to your account.'));
     }
     public function render()
     {

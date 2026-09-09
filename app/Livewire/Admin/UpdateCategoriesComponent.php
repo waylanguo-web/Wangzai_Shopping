@@ -50,9 +50,9 @@ class UpdateCategoriesComponent extends Component
             if ($this->oldImage) {
                 unlink('storage/'.$this->oldImage);
             }
-            return redirect()->route('admin.categories')->with('success', 'Category has been updated successfully!');
+            return redirect()->route('admin.categories')->with('success', __('Category has been updated successfully!'));
         } else {
-            session()->flash('error', 'Something went wrong!');
+            session()->flash('error', __('Something went wrong!'));
         }
     }
     public function render()

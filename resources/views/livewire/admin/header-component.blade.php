@@ -8,6 +8,13 @@
             <div class="top-navbar-right ms-auto">
                 <ul class="navbar-nav align-items-center">
 
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ app()->getLocale() === 'zh' ? route('locale.switch', 'en') : route('locale.switch', 'zh') }}">
+                            <i class="bi bi-translate fs-5"></i>
+                            <span class="ms-1">{{ app()->getLocale() === 'zh' ? 'English' : '中文' }}</span>
+                        </a>
+                    </li>
+
                     <li class="nav-item dropdown dropdown-user-setting">
                         <a class="nav-link dropdown-toggle dropdown-toggle-nocaret" href="#"
                             data-bs-toggle="dropdown">
@@ -36,7 +43,7 @@
                                 <a class="dropdown-item" href="{{route('admin.profile')}}">
                                     <div class="d-flex align-items-center">
                                         <div class=""><i class="bi bi-person-fill"></i></div>
-                                        <div class="ms-3"><span>Profile</span></div>
+                                        <div class="ms-3"><span>{{ __('Profile') }}</span></div>
                                     </div>
                                 </a>
                             </li>
@@ -47,7 +54,7 @@
                                 <a class="dropdown-item" href="{{ route('logout') }}">
                                     <div class="d-flex align-items-center">
                                         <div class=""><i class="bi bi-lock-fill"></i></div>
-                                        <div class="ms-3"><span>Logout</span></div>
+                                        <div class="ms-3"><span>{{ __('Logout') }}</span></div>
                                     </div>
                                 </a>
                             </li>

@@ -54,7 +54,7 @@ class MetaSettingComponent extends Component
             $metaSetting->meta_author = $this->meta_author;
             $metaSetting->save();
         }
-        session()->flash('success', 'Meta Settings has been saved successfully!');
+        session()->flash('success', __('Meta Settings has been saved successfully!'));
     }
     public function render()
     {

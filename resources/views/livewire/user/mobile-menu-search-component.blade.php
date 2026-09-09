@@ -1,6 +1,6 @@
 <div>
     <div class="header-input">
-        <input type="text" wire:model.live="search" placeholder="Search....">
+        <input type="text" wire:model.live="search" placeholder="{{ __('Search....') }}">
     </div>
     @foreach ($searchResults as $searchResult)
         <a href="javascript:;"

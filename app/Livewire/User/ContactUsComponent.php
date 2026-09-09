@@ -51,9 +51,9 @@ class ContactUsComponent extends Component
         ];
 
         if (Mail::to($this->setting->email)->send(new ContactMail($mall_data))) {
-            session()->flash('success', 'Your message has been sent successfully!');
+            session()->flash('success', __('Your message has been sent successfully!'));
         } else {
-            session()->flash('error', 'Something went wrong!');
+            session()->flash('error', __('Something went wrong!'));
         }
     }
     public function render()

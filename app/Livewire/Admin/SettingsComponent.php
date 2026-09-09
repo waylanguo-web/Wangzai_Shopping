@@ -87,9 +87,9 @@ class SettingsComponent extends Component
             $setting->custom_head_element = $this->custom_head_element;
             $setting->currency_unicode = $this->currency_unicode;
             if ($setting->save()) {
-                session()->flash('success', 'Settings has been updated successfully!');
+                session()->flash('success', __('Settings has been updated successfully!'));
             } else {
-                session()->flash('error', 'Something went wrong!');
+                session()->flash('error', __('Something went wrong!'));
             }
         }
 
@@ -117,9 +117,9 @@ class SettingsComponent extends Component
             $setting->custom_head_element = $this->custom_head_element;
             $setting->currency_unicode = $this->currency_unicode;
             if ($setting->save()) {
-                session()->flash('success', 'Settings has been created successfully!');
+                session()->flash('success', __('Settings has been created successfully!'));
             } else {
-                session()->flash('error', 'Something went wrong!');
+                session()->flash('error', __('Something went wrong!'));
             }
         }
     }

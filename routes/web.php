@@ -1,6 +1,15 @@
 <?php
 use Illuminate\Support\Facades\Route;
 
+Route::get('/locale/{locale}', function ($locale) {
+    if (!in_array($locale, ['en', 'zh'])) {
+        $locale = 'zh';
+    }
+    session()->put('locale', $locale);
+    app()->setLocale($locale);
+    return redirect()->back();
+})->name('locale.switch');
+
 Route::get('/sitemap.xml', [App\Http\Controllers\SitemapController::class, 'index'])->name('sitemap');
 
 Route::get('/', App\Livewire\User\HomeComponent::class)->name('user.home');
@@ -15,6 +24,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/cart', App\Livewire\User\CartComponent::class)->name('user.cart');
     Route::get('/profile', App\Livewire\User\ProfileComponent::class)->name('user.profile');
     Route::get('/checkout', App\Livewire\User\CheckoutComponent::class)->name('user.checkout');
+    Route::get('/upload-proof/{order_id}', App\Livewire\User\UploadProofComponent::class)->name('user.upload-proof');
 
     Route::get('/logout', function () {
         Auth::logout();
@@ -44,6 +54,7 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
     Route::get('/admin/dashboard/settings/meta', App\Livewire\Admin\MetaSettingComponent::class)->name('admin.settings.meta');
     Route::get('/admin/dashboard/orders', App\Livewire\Admin\AllOrdersComponent::class)->name('admin.orders');
     Route::get('/admin/dashboard/orders/details/{id}', App\Livewire\Admin\OrderDetailsComponent::class)->name('admin.orders.details');
+    Route::get('/admin/dashboard/payment-review', App\Livewire\Admin\PaymentReviewComponent::class)->name('admin.payment-review');
     Route::get('/admin/dashboard/support-ticket', App\Livewire\Admin\SupportTicketComponent::class);
     Route::get('/admin/dashboard/profile', App\Livewire\Admin\ProfileComponent::class)->name('admin.profile');
 });

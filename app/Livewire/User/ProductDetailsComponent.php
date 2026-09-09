@@ -39,7 +39,7 @@ class ProductDetailsComponent extends Component
             'rating' => $this->rating
         ]);
         $this->reset(['review', 'rating']);
-        session()->flash('success', 'Review added successfully.');
+        session()->flash('success', __('Review added successfully.'));
     }
     public function render()
     {

@@ -23,7 +23,7 @@ class ProductsComponent extends Component
     }
     public function productDetails($id, $slug, $category_id)
     {
-        return redirect()->route('user.product-details', ['id' => $id, 'slug' => $slug, 'category_id' => $category_id]);
+        return redirect()->route('user.product-details', ['id' => $id, 'slug' => $slug ?: 'product', 'category_id' => $category_id]);
     }
     public function addToWishList($id)
     {
@@ -35,7 +35,7 @@ class ProductsComponent extends Component
             'product_id' => $id
         ]);
         if ($Wishlist) {
-           return redirect()->route('user.wishlist')->with('success', 'Item added in wishlist successfully.');
+           return redirect()->route('user.wishlist')->with('success', __('Item added in wishlist successfully.'));
         }
     }
     public function render()

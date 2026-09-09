@@ -38,9 +38,9 @@ class AddBrandsComponent extends Component
         $imageLocation = $this->logo->storeAs('brands', $imageName, 'public');
         $brand->logo = $imageLocation;
         if ($brand->save()) {
-            session()->flash('success', 'Brand has been created successfully!');
+            session()->flash('success', __('Brand has been created successfully!'));
         } else {
-            session()->flash('error', 'Something went wrong!');
+            session()->flash('error', __('Something went wrong!'));
         }
     }
     public function render()

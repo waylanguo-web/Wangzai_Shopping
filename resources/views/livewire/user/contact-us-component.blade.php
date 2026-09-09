@@ -7,9 +7,8 @@
                     <div class="col-lg-6">
                         <div class="contact-info-section">
                             <div class="contact-information">
-                                <h5 class="wrapper-heading">Contact Information</h5>
-                                <p class="paragraph">Fill the form below or write us .We will help you as soon as
-                                    possible.</p>
+                                <h5 class="wrapper-heading">{{ __('Contact Information') }}</h5>
+                                <p class="paragraph">{{ __('Fill the form below or write us .We will help you as soon as possible.') }}</p>
                                 <div class="contact-wrapper">
                                     <div class="row gy-5">
                                         <div class="col-sm-6">
@@ -33,7 +32,7 @@
                                                     </span>
                                                 </div>
                                                 <div class="wrapper-content">
-                                                    <h5 class="wrapper-heading">Phone</h5>
+                                                    <h5 class="wrapper-heading">{{ __('Phone') }}</h5>
                                                     <p class="paragraph">{{ $setting->phone_number ?? '' }}</p>
                                                 </div>
                                             </div>
@@ -63,7 +62,7 @@
                                                     </span>
                                                 </div>
                                                 <div class="wrapper-content">
-                                                    <h5 class="wrapper-heading">Email</h5>
+                                                    <h5 class="wrapper-heading">{{ __('Email') }}</h5>
                                                     <p class="paragraph">{{ $setting->email ?? '' }}</p>
                                                 </div>
                                             </div>
@@ -85,7 +84,7 @@
                                                         </span>
                                                     </div>
                                                     <div class="address-content">
-                                                        <h5 class="wrapper-heading">Address</h5>
+                                                        <h5 class="wrapper-heading">{{ __('Address') }}</h5>
                                                         <p class="paragraph">{{ $setting->address  ?? ''}}</p>
                                                     </div>
                                                 </div>
@@ -104,47 +103,47 @@
                     <div class="col-lg-6">
                         <div class="question-section login-section ">
                             <div class="review-form">
-                                <h5 class="comment-title">Get In Touch</h5>
+                                <h5 class="comment-title">{{ __('Get In Touch') }}</h5>
                                 <form wire:submit.prevent="contact">
                                     <div class=" account-inner-form">
                                         <div class="review-form-name">
-                                            <label for="fname" class="form-label">Name*</label>
+                                            <label for="fname" class="form-label">{{ __('Name*') }}</label>
                                             <input type="text"
                                                 class="form-control @error('sender_name') is-invalid @enderror"
-                                                placeholder="Your Name" wire:model="sender_name">
+                                                placeholder="{{ __('Your Name') }}" wire:model="sender_name">
                                             @error('sender_name')
                                                 <span class="invalid-feedback"> {{ $message }}</span>
                                             @enderror
                                         </div>
                                         <div class="review-form-name">
-                                            <label for="email" class="form-label">Email*</label>
+                                            <label for="email" class="form-label">{{ __('Email*') }}</label>
                                             <input type="text"
                                                 class="form-control @error('sender_email') is-invalid @enderror"
-                                                placeholder="Your Email" wire:model="sender_email">
+                                                placeholder="{{ __('Your Email') }}" wire:model="sender_email">
                                             @error('sender_email')
                                                 <span class="invalid-feedback"> {{ $message }}</span>
                                             @enderror
                                         </div>
                                         <div class="review-form-name">
-                                            <label for="subject" class="form-label">Subject*</label>
+                                            <label for="subject" class="form-label">{{ __('Subject*') }}</label>
                                             <input type="text"
                                                 class="form-control @error('subject') is-invalid @enderror"
-                                                placeholder="Subject" wire:model="subject">
+                                                placeholder="{{ __('Subject') }}" wire:model="subject">
                                             @error('subject')
                                                 <span class="invalid-feedback"> {{ $message }}</span>
                                             @enderror
                                         </div>
                                     </div>
                                     <div class="review-textarea">
-                                        <label for="floatingTextarea">Massage*</label>
-                                        <textarea class="form-control @error('message') is-invalid @enderror" placeholder="Write Massage..........."
+                                        <label for="floatingTextarea">{{ __('Massage*') }}</label>
+                                        <textarea class="form-control @error('message') is-invalid @enderror" placeholder="{{ __('Write Massage...........') }}"
                                             id="floatingTextarea" rows="3" wire:model="message"></textarea>
                                         @error('message')
                                             <span class="invalid-feedback"> {{ $message }}</span>
                                         @enderror
                                     </div>
                                     <div class="login-btn">
-                                        <button type="submit" wire:loading.attr="disabled" class="shop-btn">Send Now</button>
+                                        <button type="submit" wire:loading.attr="disabled" class="shop-btn">{{ __('Send Now') }}</button>
                                     </div>
                                 </form>
                             </div>

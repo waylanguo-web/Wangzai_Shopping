@@ -5,19 +5,18 @@
             <div class="row align-items-center m-0">
                 <div class="col-md-3 col-12 me-auto mb-md-0 mb-3">
                     <select class="form-select">
-                        <option>All category</option>
-                        <option>Fashion</option>
-                        <option>Electronics</option>
-                        <option>Furniture</option>
-                        <option>Sports</option>
+                        <option>{{ __('All category') }}</option>
+                        @foreach ($categories as $category)
+                            <option value="{{ $category->id }}">{{ $category->name }}</option>
+                        @endforeach
                     </select>
                 </div>
                 <div class="col-md-2 col-6">
                     <select class="form-select">
-                        <option>Status</option>
-                        <option>Active</option>
-                        <option>Disabled</option>
-                        <option>Show all</option>
+                        <option>{{ __('Status') }}</option>
+                        <option>{{ __('Active') }}</option>
+                        <option>{{ __('Disabled') }}</option>
+                        <option>{{ __('Show all') }}</option>
                     </select>
                 </div>
             </div>
@@ -27,15 +26,15 @@
                 <table class="table align-middle table-striped">
                     <thead class="table-light">
                         <tr>
-                            <th>Order ID</th>
-                            <th>Buyer Name</th>
-                            <th>Total Amount</th>
-                            <th>TrX ID</th>
-                            <th>Payment Method</th>
-                            <th>Payment Number</th>
-                            <th>Ordered On</th>
-                            <th>Status</th>
-                            <th>Action</th>
+                            <th>{{ __('Order ID') }}</th>
+                            <th>{{ __('Buyer Name') }}</th>
+                            <th>{{ __('Total Amount') }}</th>
+                            <th>{{ __('TrX ID') }}</th>
+                            <th>{{ __('Payment Method') }}</th>
+                            <th>{{ __('Payment Number') }}</th>
+                            <th>{{ __('Ordered On') }}</th>
+                            <th>{{ __('Status') }}</th>
+                            <th>{{ __('Action') }}</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -63,15 +62,12 @@
                                     <span>{{ $order->created_at->formatLocalized('%B %d, %Y, %H:%M:%S') }}</span>
                                 </td>
                                 <td>
-                                    @if ($order->status == 'ordered')
-                                        <span class="badge rounded-pill bg-info">{{ $order->status }}</span>
-                                    @elseif($order->status == 'processing')
-                                        <span class="badge rounded-pill bg-warning">{{ $order->status }}</span>
-                                    @elseif($order->status == 'delivered')
-                                        <span class="badge rounded-pill bg-success">{{ $order->status }}</span>
-                                    @elseif($order->status == 'cancelled')
-                                        <span class="badge rounded-pill bg-danger">{{ $order->status }}</span>
-                                    @endif
+                                    @php
+                                        $dsLabels = \App\Models\Order::displayStatusLabels();
+                                        $ds = $order->display_status;
+                                        $label = $dsLabels[$ds] ?? ['text' => $ds, 'class' => 'bg-secondary'];
+                                    @endphp
+                                    <span class="badge rounded-pill {{ $label['class'] }}">{{ __($label['text']) }}</span>
                                 </td>
                                 <td>
                                     <div class="d-flex align-items-center gap-3 fs-6">
@@ -88,11 +84,11 @@
             </div>
             <nav class="float-end mt-4" aria-label="Page navigation">
                 <ul class="pagination">
-                    <li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
+                    <li class="page-item disabled"><a class="page-link" href="#">{{ __('Previous') }}</a></li>
                     <li class="page-item active"><a class="page-link" href="#">1</a></li>
                     <li class="page-item"><a class="page-link" href="#">2</a></li>
                     <li class="page-item"><a class="page-link" href="#">3</a></li>
-                    <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                    <li class="page-item"><a class="page-link" href="#">{{ __('Next') }}</a></li>
                 </ul>
             </nav>
         </div>

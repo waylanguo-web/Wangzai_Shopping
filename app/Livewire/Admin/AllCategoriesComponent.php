@@ -11,9 +11,9 @@ class AllCategoriesComponent extends Component
     {
         $category = Category::find($id);
         if ($category->delete()) {
-            session()->flash('success', 'Category has been deleted successfully!');
+            session()->flash('success', __('Category has been deleted successfully!'));
         } else {
-            session()->flash('error', 'Something went wrong!');
+            session()->flash('error', __('Something went wrong!'));
         }
     }
     public function editeCategory($id)

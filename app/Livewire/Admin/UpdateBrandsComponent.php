@@ -50,9 +50,9 @@ class UpdateBrandsComponent extends Component
             if ($this->oldImage) {
                 unlink('storage/'.$this->oldImage);
             }
-            return redirect()->route('admin.brands')->with('success', 'Brand has been updated successfully!');
+            return redirect()->route('admin.brands')->with('success', __('Brand has been updated successfully!'));
         } else {
-            session()->flash('error', 'Something went wrong!');
+            session()->flash('error', __('Something went wrong!'));
         }
     }
     

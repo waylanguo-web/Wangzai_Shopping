@@ -1,7 +1,7 @@
 <section class="product brand" data-aos="fade-up">
     <div class="container">
         <div class="section-title">
-            <h5>Brand of Prodcuts</h5>
+            <h5>{{ __('Brand of Prodcuts') }}</h5>
         </div>
         <div class="brand-section">
             @foreach ($brands as $brand)

@@ -5,7 +5,7 @@
                 <div class="row">
                     <div class="col-lg-6">
                         <div class="about-content" data-aos="fade-up">
-                            <h3 class="about-title">Delivery Policy</h3>
+                            <h3 class="about-title">{{ __('Delivery Policy') }}</h3>
                             <p class="about-info">
                                 {!! $delivery_policy !!}
                             </p>
@@ -13,7 +13,7 @@
                     </div>
                     <div class="col-lg-6">
                         <div class="about-content" data-aos="fade-up">
-                            <h3 class="about-title">Return Policy</h3>
+                            <h3 class="about-title">{{ __('Return Policy') }}</h3>
                             <p class="about-info">
                                 {!! $return_policy !!}
                             </p>

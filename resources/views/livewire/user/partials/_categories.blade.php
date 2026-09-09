@@ -1,7 +1,7 @@
 <section class="product-category mt-5">
     <div class="container">
         <div class="section-title">
-            <h5>Our Categories</h5>
+            <h5>{{ __('Our Categories') }}</h5>
         </div>
         <div class="category-section">
             @foreach ($categories as $category)

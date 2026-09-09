@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Mail;
 class OrderDetailsComponent extends Component
 {
     public $order_id, $buyer_name, $buyer_email, $buyer_phone, $status, $orderItems = [], $total_price, $payment_method, $payment_number, $payment_transaction_id, $delivery_mail;
+    public $payment_status;
     public $delivery_details;
     public $mail_title;
 
@@ -27,6 +28,7 @@ class OrderDetailsComponent extends Component
             $this->payment_method = $order->payment_method;
             $this->payment_number = $order->payment_number;
             $this->payment_transaction_id = $order->payment_transaction_id;
+            $this->payment_status = $order->payment_status;
         }
     }
     public function save_order_details()
@@ -36,12 +38,18 @@ class OrderDetailsComponent extends Component
             $order->update([
                 'status' => $this->status
             ]);
-            return redirect()->route('admin.orders')->with('success', 'Order status updated successfully.');
+            return redirect()->route('admin.orders')->with('success', __('Order status updated successfully.'));
         }
     }
 
     public function deliver()
     {
+        $order = Order::find($this->order_id);
+        if ($order && $order->payment_status != 'paid') {
+            return redirect()->route('admin.orders.details', $this->order_id)
+                ->with('error', __('Cannot deliver: payment is not confirmed yet.'));
+        }
+
         $mail_data = [
             'user_name' => $this->buyer_name,
             'product' => $this->delivery_mail,
@@ -51,16 +59,28 @@ class OrderDetailsComponent extends Component
         if (Mail::to($this->buyer_email)->send(new DeliverProductMail($mail_data))) {
             Order::find($this->order_id)
                 ->update([
-                    'status' => 'delivered'
+                    'status' => 'shipped'
                 ]);
-            return redirect()->route('admin.orders')->with('success', 'Product delivered successfully.');
+            return redirect()->route('admin.orders')->with('success', __('Product shipped successfully.'));
         } else {
-            return redirect()->route('admin.orders')->with('error', 'Something went wrong.');
+            return redirect()->route('admin.orders')->with('error', __('Something went wrong.'));
         }
 
     }
+
+    public function confirmDelivered()
+    {
+        $order = Order::find($this->order_id);
+        if (!$order || $order->status != 'shipped') {
+            return redirect()->route('admin.orders.details', $this->order_id)
+                ->with('error', __('Cannot confirm delivery: order is not shipped yet.'));
+        }
+        $order->update(['status' => 'delivered']);
+        return redirect()->route('admin.orders')->with('success', __('Order confirmed as delivered.'));
+    }
     public function render()
     {
-        return view('livewire.admin.order-details-component')->layout('components.layouts.admin');
+        $order = Order::with('paymentProofs.reviewer')->find($this->order_id);
+        return view('livewire.admin.order-details-component', ['order' => $order])->layout('components.layouts.admin');
     }
 }

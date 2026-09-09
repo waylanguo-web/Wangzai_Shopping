@@ -5,14 +5,17 @@
                 <div class="header-top">
                     <div class="header-profile">
                         @auth
-                            <a href="{{ route('logout') }}"><span>Logout</span></a>
+                            <a href="{{ route('logout') }}"><span>{{ __('Logout') }}</span></a>
                         @else
-                            <a href="{{ route('login') }}"><span>Login</span></a>
+                            <a href="{{ route('login') }}"><span>{{ __('Login') }}</span></a>
                         @endauth
+                        <a href="{{ app()->getLocale() === 'zh' ? route('locale.switch', 'en') : route('locale.switch', 'zh') }}">
+                            <span>{{ app()->getLocale() === 'zh' ? 'English' : '中文' }}</span>
+                        </a>
                     </div>
                     <div class="header-contact d-none d-lg-block">
                         <a href="{{ route('contact-us') }}">
-                            <span>Need help? Call us:</span>
+                            <span>{{ __('Need help? Call us:') }}</span>
                             <span class="contact-number">{{ $setting->phone_number  ?? '' }}</span>
                         </a>
                     </div>
@@ -62,7 +65,7 @@
                                     </svg>
                                 </span>
                                 <span class="cart-text">
-                                    Wishlist
+                                    {{ __('Wishlist') }}
                                 </span>
                             </a>
                         </div>
@@ -87,7 +90,7 @@
 
                                 </span>
                                 <span class="cart-text">
-                                    Cart
+                                    {{ __('Cart') }}
                                 </span>
                             </a>
                             @livewire('user.mini-cart-component')
@@ -184,17 +187,17 @@
                         <ul class="menu-list">
                             <li>
                                 <a href="{{ route('user.home') }}">
-                                    <span class="list-text">Home</span>
+                                    <span class="list-text">{{ __('Home') }}</span>
                                 </a>
                             </li>
                             <li>
                                 <a href="{{ route('about-us') }}">
-                                    <span class="list-text">About</span>
+                                    <span class="list-text">{{ __('About') }}</span>
                                 </a>
                             </li>
                             <li>
                                 <a href="{{ route('contact-us') }}">
-                                    <span class="list-text">Contact</span>
+                                    <span class="list-text">{{ __('Contact') }}</span>
                                 </a>
                             </li>
                         </ul>

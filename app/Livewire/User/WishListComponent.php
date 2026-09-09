@@ -11,9 +11,9 @@ class WishListComponent extends Component
     {
         $wishlist = Wishlist::find($id);
         if($wishlist->delete())
-            session()->flash('success', 'Product has been removed from wishlist successfully!');
+            session()->flash('success', __('Product has been removed from wishlist successfully!'));
         else
-            session()->flash('error', 'Something went wrong!');
+            session()->flash('error', __('Something went wrong!'));
     }
     public function clearAllWishlist()
     {
@@ -22,7 +22,7 @@ class WishListComponent extends Component
         {
             $wishlist->delete();
         }
-        session()->flash('success', 'Wishlist has been cleared successfully!');
+        session()->flash('success', __('Wishlist has been cleared successfully!'));
     }
     public function render()
     {

@@ -39,9 +39,9 @@ class AddCategoriesComponent extends Component
         $imageLocation = $this->image->storeAs('categories', $imageName, 'public');
         $category->image = $imageLocation;
         if ($category->save()) {
-            session()->flash('success', 'Category has been created successfully!');
+            session()->flash('success', __('Category has been created successfully!'));
         } else {
-            session()->flash('error', 'Something went wrong!');
+            session()->flash('error', __('Something went wrong!'));
         }
     }
     public function render()

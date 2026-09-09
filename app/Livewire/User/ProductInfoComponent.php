@@ -21,7 +21,7 @@ class ProductInfoComponent extends Component
             'product_id' => $this->product->id
         ]);
         if ($Wishlist) {
-            return redirect()->route('user.wishlist')->with('success', 'Item added in wishlist successfully.');
+            return redirect()->route('user.wishlist')->with('success', __('Item added in wishlist successfully.'));
         }
     }
     public function addToCart()
@@ -34,7 +34,7 @@ class ProductInfoComponent extends Component
         if ($cart) {
             $cart->quantity += $this->quantity;
             $cart->save();
-            session()->flash('success', 'Item added in cart successfully.');
+            session()->flash('success', __('Item added in cart successfully.'));
         } else {
             $cart = Cart::create([
                 'user_id' => auth()->user()->id,
@@ -43,9 +43,9 @@ class ProductInfoComponent extends Component
                 'quantity' => $this->quantity
             ]);
             if ($cart) {
-                session()->flash('success', 'Item added in cart successfully.');
+                session()->flash('success', __('Item added in cart successfully.'));
             } else {
-                session()->flash('error', 'Something went wrong!');
+                session()->flash('error', __('Something went wrong!'));
             }
         }
     }

@@ -3,59 +3,92 @@
 namespace App\Livewire\Admin;
 
 use Livewire\Component;
+use Livewire\WithFileUploads;
 use App\Models\PaymentSetting;
+use Illuminate\Support\Carbon;
+use Illuminate\Support\Str;
 
 class PaymentSettingComponent extends Component
 {
-    public $name, $note, $number;
+    use WithFileUploads;
+
+    public $name, $note, $number, $type, $qr_image, $old_qr_image, $enabled;
 
     public $isUpdateMode = false;
     public $updatePayment_id;
+
+    public function mount()
+    {
+        $this->type = 'transfer';
+        $this->enabled = true;
+    }
+
     private function emptyField()
     {
         $this->name = '';
         $this->note = '';
         $this->number = '';
+        $this->type = 'transfer';
+        $this->qr_image = '';
+        $this->old_qr_image = '';
+        $this->enabled = true;
     }
+
     public function SavePayment()
     {
-        $validatedData = $this->validate([
+        $rules = [
             'name' => 'required',
             'note' => 'required',
-            'number' => 'required',
-        ]);
-
-        if (!$validatedData) {
-            foreach ($validatedData as $key => $value) {
-                if ($value) {
-                    $errors[$key] = $value;
-                }
-            }
-            foreach ($errors as $key => $value) {
-                $this->addError($key, $value);
+            'type' => 'required|in:transfer,qr',
+            'enabled' => 'boolean',
+        ];
+        if ($this->type == 'transfer') {
+            $rules['number'] = 'required';
+        } else {
+            $rules['number'] = 'nullable';
+            if (!$this->isUpdateMode) {
+                $rules['qr_image'] = 'required|image|mimes:jpeg,png,jpg|max:2048';
+            } else {
+                $rules['qr_image'] = 'nullable|image|mimes:jpeg,png,jpg|max:2048';
             }
         }
 
-        // while updating payment method
+        $validatedData = $this->validate($rules);
+
         if ($this->isUpdateMode) {
             $payment = PaymentSetting::find($this->updatePayment_id);
-            $payment->update([
-                'name' => $this->name,
-                'note' => $this->note,
-                'number' => $this->number,
-            ]);
+            $payment->name = $this->name;
+            $payment->note = $this->note;
+            $payment->number = $this->number;
+            $payment->type = $this->type;
+            $payment->enabled = $this->enabled;
+            if ($this->qr_image) {
+                if ($payment->qr_image) {
+                    @unlink('storage/' . $payment->qr_image);
+                }
+                $qrName = Carbon::now()->timestamp . '-' . Str::random(8) . '.' . $this->qr_image->getClientOriginalExtension();
+                $payment->qr_image = $this->qr_image->storeAs('payment-qr', $qrName, 'public');
+            }
+            $payment->save();
             $this->isUpdateMode = false;
             $this->emptyField();
-            session()->flash('success', 'Payment method updated successfully.');
-        } 
-
-        // while creating new payment method
-        else {
-            if (PaymentSetting::create($validatedData)) {
+            session()->flash('success', __('Payment method updated successfully.'));
+        } else {
+            $payment = new PaymentSetting();
+            $payment->name = $this->name;
+            $payment->note = $this->note;
+            $payment->number = $this->number;
+            $payment->type = $this->type;
+            $payment->enabled = $this->enabled;
+            if ($this->qr_image) {
+                $qrName = Carbon::now()->timestamp . '-' . Str::random(8) . '.' . $this->qr_image->getClientOriginalExtension();
+                $payment->qr_image = $this->qr_image->storeAs('payment-qr', $qrName, 'public');
+            }
+            if ($payment->save()) {
                 $this->emptyField();
-                session()->flash('success', 'Payment method added successfully.');
+                session()->flash('success', __('Payment method added successfully.'));
             } else {
-                session()->flash('error', 'Something went wrong.');
+                session()->flash('error', __('Something went wrong.'));
             }
         }
     }
@@ -67,18 +100,25 @@ class PaymentSettingComponent extends Component
         $this->name = $payment->name;
         $this->note = $payment->note;
         $this->number = $payment->number;
+        $this->type = $payment->type;
+        $this->old_qr_image = $payment->qr_image;
+        $this->enabled = $payment->enabled;
         $this->isUpdateMode = true;
     }
 
     public function deletePaymentMethod($id)
     {
-        if (PaymentSetting::find($id)->delete()) {
-            session()->flash('success', 'Payment method deleted successfully.');
+        $payment = PaymentSetting::find($id);
+        if ($payment->qr_image) {
+            @unlink('storage/' . $payment->qr_image);
+        }
+        if ($payment->delete()) {
+            session()->flash('success', __('Payment method deleted successfully.'));
         } else {
-            session()->flash('error', 'Something went wrong.');
+            session()->flash('error', __('Something went wrong.'));
         }
     }
-    
+
     public function render()
     {
         $payments = PaymentSetting::all();

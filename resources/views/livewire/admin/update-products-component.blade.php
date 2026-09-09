@@ -3,29 +3,29 @@
         <div class="col-lg-8 mx-auto">
             <div class="card">
                 <div class="card-header py-3 bg-transparent">
-                    <h5 class="mb-0">Update Product</h5>
+                    <h5 class="mb-0">{{ __('Update Product') }}</h5>
                 </div>
                 <div class="card-body">
                     <div class="border p-3 rounded">
                         <form wire:submit.prevent="update_product" class="row g-3">
                             <div class="col-12">
-                                <label class="form-label">Product Name</label>
+                                <label class="form-label">{{ __('Product Name') }}</label>
                                 <input type="text" class="form-control @error('name') is-invalid @enderror"
-                                    placeholder="Product Name" wire:model="name">
+                                    placeholder="{{ __('Product Name') }}" wire:model="name">
                                 @error('name')
                                     <span class="invalid-feedback"> {{ $message }}</span>
                                 @enderror
                             </div>
                             <div class="col-12">
-                                <label class="form-label">Full description</label>
-                                <textarea class="form-control @error('description') is-invalid @enderror" placeholder="Full description" rows="4"
+                                <label class="form-label">{{ __('Full description') }}</label>
+                                <textarea class="form-control @error('description') is-invalid @enderror" placeholder="{{ __('Full description') }}" rows="4"
                                     cols="4" wire:model="description"></textarea>
                                 @error('description')
                                     <span class="invalid-feedback"> {{ $message }}</span>
                                 @enderror
                             </div>
                             <div class="col-12">
-                                <label class="form-label">Images</label>
+                                <label class="form-label">{{ __('Images') }}</label>
                                 <input class="form-control  @error('new_image') is-invalid @enderror" type="file"
                                     multiple="" wire:model="new_image">
                                 @error('new_image')
@@ -33,10 +33,10 @@
                                 @enderror
                             </div>
                             <div class="col-12 col-md-4">
-                                <label class="form-label">Category</label>
+                                <label class="form-label">{{ __('Category') }}</label>
                                 <select class="form-select  @error('category_id') is-invalid @enderror"
                                     wire:model="category_id">
-                                    <option>Select Category</option>
+                                    <option>{{ __('Select Category') }}</option>
                                     @foreach ($categories as $category)
                                         <option value="{{ $category->id }}">{{ $category->name }}</option>
                                     @endforeach
@@ -46,18 +46,18 @@
                                 @enderror
                             </div>
                             <div class="col-12 col-md-4">
-                                <label class="form-label">Status</label>
+                                <label class="form-label">{{ __('Status') }}</label>
                                 <select class="form-select  @error('status') is-invalid @enderror" wire:model="status">
-                                    <option>Select Status</option>
-                                    <option value="1">Enabled</option>
-                                    <option value="0">Disabled</option>
+                                    <option>{{ __('Select Status') }}</option>
+                                    <option value="1">{{ __('Enabled') }}</option>
+                                    <option value="0">{{ __('Disabled') }}</option>
                                 </select>
                                 @error('status')
                                     <span class="invalid-feedback"> {{ $message }}</span>
                                 @enderror
                             </div>
                             <div class="col-12 col-md-4">
-                                <label class="form-label">Stock</label>
+                                <label class="form-label">{{ __('Stock') }}</label>
                                 <input type="text" class="form-control  @error('stock') is-invalid @enderror"
                                     placeholder="Regular Price" wire:model="stock">
                                 @error('stock')
@@ -84,12 +84,12 @@
                                     <input class="form-check-input" type="checkbox" id="flash_sale"
                                         wire:model="flash_sale">
                                     <label class="form-check-label" for="flash_sale">
-                                        Flash Sale ?
+                                        {{ __('Flash Sale ?') }}
                                     </label>
                                 </div>
                             </div>
                             <div class="col-12">
-                                <button class="btn btn-primary px-4">Submit Item</button>
+                                <button class="btn btn-primary px-4">{{ __('Submit Item') }}</button>
                             </div>
                         </form>
                     </div>
@@ -103,15 +103,15 @@
             <div class="card">
                 @include('livewire.admin.partials._alerts')
                 <div class="card-header py-3 bg-transparent">
-                    <h5 class="mb-0">Subscription</h5>
+                    <h5 class="mb-0">{{ __('Subscription') }}</h5>
                 </div>
                 <div class="table-responsive">
                     <table class="table align-middle table-striped">
                         <thead class="table-light">
                             <tr>
-                                <th>Name & Regular Price</th>
-                                <th>Name & Sale Price</th>
-                                <th>Action</th>
+                                <th>{{ __('Name & Regular Price') }}</th>
+                                <th>{{ __('Name & Sale Price') }}</th>
+                                <th>{{ __('Action') }}</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -127,7 +127,7 @@
                                         <div class="d-flex align-items-center gap-3 fs-6">
                                             <a href="javascript:;" wire:click="deleteSubscription({{$subscription->id}})" class="text-danger"
                                                 data-bs-toggle="tooltip" data-bs-placement="bottom" title=""
-                                                data-bs-original-title="Delete" aria-label="Delete"><i
+                                                data-bs-original-title="{{ __('Delete') }}" aria-label="Delete"><i
                                                     class="bi bi-trash-fill"></i></a>
                                         </div>
                                     </td>
@@ -144,34 +144,34 @@
                             <div class="row g-3">
                                 <form wire:submit.prevent="add_subscription" class="row g-3">
                                     <div class="col-lg-4">
-                                        <label class="form-label">Regular Price</label>
+                                        <label class="form-label">{{ __('Regular Price') }}</label>
                                         <input type="text"
                                             class="form-control  @error('regular_price') is-invalid @enderror"
-                                            placeholder="Regular Price" wire:model="regular_price">
+                                            placeholder="{{ __('Regular Price') }}" wire:model="regular_price">
                                         @error('regular_price')
                                             <span class="invalid-feedback"> {{ $message }}</span>
                                         @enderror
                                     </div>
                                     <div class="col-lg-4">
-                                        <label class="form-label">Sale Price</label>
+                                        <label class="form-label">{{ __('Sale Price') }}</label>
                                         <input type="text"
                                             class="form-control  @error('sale_price') is-invalid @enderror"
-                                            placeholder="Sale Price" wire:model="sale_price">
+                                            placeholder="{{ __('Sale Price') }}" wire:model="sale_price">
                                         @error('sale_price')
                                             <span class="invalid-feedback"> {{ $message }}</span>
                                         @enderror
                                     </div>
                                     <div class="col-lg-4">
-                                        <label class="form-label">Subscription Name</label>
+                                        <label class="form-label">{{ __('Subscription Name') }}</label>
                                         <input type="text"
                                             class="form-control  @error('subscription_name') is-invalid @enderror"
-                                            placeholder="Subscription Name" wire:model="subscription_name">
+                                            placeholder="{{ __('Subscription Name') }}" wire:model="subscription_name">
                                         @error('subscription_name')
                                             <span class="invalid-feedback"> {{ $message }}</span>
                                         @enderror
                                     </div>
                                     <div class="col-12">
-                                        <button class="btn btn-primary px-4">Submit Subscription</button>
+                                        <button class="btn btn-primary px-4">{{ __('Submit Subscription') }}</button>
                                     </div>
                                 </form>
                             </div>

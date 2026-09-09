@@ -31,12 +31,12 @@ class UpdatePasswordComponent extends Component
         if (Auth::attempt(['email' => $user->email, 'password' => $this->current_password])) {
             $user->password = bcrypt($this->new_password);
             if ($user->save()) {
-                session()->flash('success', 'Password has been updated successfully!');
+                session()->flash('success', __('Password has been updated successfully!'));
             } else {
-                session()->flash('error', 'Something went wrong!');
+                session()->flash('error', __('Something went wrong!'));
             }
         } else {
-            session()->flash('error', 'Current password is incorrect!');
+            session()->flash('error', __('Current password is incorrect!'));
         }
     }
     

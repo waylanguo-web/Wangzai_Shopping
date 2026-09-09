@@ -20,7 +20,7 @@ class MiniCartComponent extends Component
     {
         $cartItem = Cart::find($id);
         $cartItem->delete();
-        session()->flash('success', 'Item has been removed from cart successfully!');
+        session()->flash('success', __('Item has been removed from cart successfully!'));
     }
     
     public function render()

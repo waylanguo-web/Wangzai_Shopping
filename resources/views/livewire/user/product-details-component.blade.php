@@ -3,9 +3,9 @@
         <div class="container">
             @include('livewire.user.partials._alerts')
             <div class="blog-bradcrum">
-                <span><a href="{{ route('user.home') }}">Home</a></span>
+                <span><a href="{{ route('user.home') }}">{{ __('Home') }}</a></span>
                 <span class="devider">/</span>
-                <span><a>Product Details</a></span>
+                <span><a>{{ __('Product Details') }}</a></span>
             </div>
             <div class="product-info-section">
                 <div class="row ">
@@ -44,24 +44,24 @@
                                         @endif
                                     @endfor
                                 </span>
-                                <span class="text">{{$product->reviews->count()}} Reviews</span>
+                                <span class="text">{{$product->reviews->count()}} {{ __('Reviews') }}</span>
                             </div>
                             <p class="content-paragraph">{{ Str::limit($product->description, 60) }}</p>
                             <hr>
                             <div class="product-availability">
-                                <span>Availabillity : </span>
+                                <span>{{ __('Availability :') }} </span>
                                 <span class="inner-text">
                                     @if ($product->stock > 0)
-                                        {{ $product->stock }} Products Available
+                                        {{ $product->stock }} {{ __('Products Available') }}
                                     @else
-                                        <span class="text-danger">Out Of Stock</span>
+                                        <span class="text-danger">{{ __('Out Of Stock') }}</span>
                                     @endif
                                 </span>
                             </div>
                             @livewire('user.product-info-component', ['product' => $product, 'category' => $category])
                             <hr>
                             <div class="product-details">
-                                <p class="category">Category : <span class="inner-text">{{ $category->name }}</span>
+                                <p class="category">{{ __('Category :') }} <span class="inner-text">{{ $category->name }}</span>
                                 </p>
                             </div>
                             <hr>
@@ -72,16 +72,16 @@
         
                                 @if (!Auth::user()->reviews()->where('product_id', $product->id)->exists())
                                     <div>
-                                        <h5>Give A Review!</h5>
-                                        <textarea class="form-control" placeholder="Your Review Here!" wire:model="review"></textarea>
+                                        <h5>{{ __('Give A Review!') }}</h5>
+                                        <textarea class="form-control" placeholder="{{ __('Your Review Here!') }}" wire:model="review"></textarea>
                                         <select class="form-select mb-2 mt-2" wire:model="rating">
-                                            <option value="1">1 Star</option>
-                                            <option value="2">2 Star</option>
-                                            <option value="3">3 Star</option>
-                                            <option value="4">4 Star</option>
-                                            <option value="5">5 Star</option>
+                                            <option value="1">{{ __('1 Star') }}</option>
+                                            <option value="2">{{ __('2 Star') }}</option>
+                                            <option value="3">{{ __('3 Star') }}</option>
+                                            <option value="4">{{ __('4 Star') }}</option>
+                                            <option value="5">{{ __('5 Star') }}</option>
                                         </select>
-                                        <button wire:click="addReview" class="btn btn-success">Post Review</button>
+                                        <button wire:click="addReview" class="btn btn-success">{{ __('Post Review') }}</button>
                                     </div>
                                 @endif
                             @endif
@@ -101,10 +101,10 @@
                     <div class="nav nav-tabs nav-item" id="nav-tab" role="tablist">
                         <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab"
                             data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home"
-                            aria-selected="true">Description</button>
+                            aria-selected="true">{{ __('Description') }}</button>
                         <button class="nav-link" id="nav-review-tab" data-bs-toggle="tab" data-bs-target="#nav-review"
                             type="button" role="tab" aria-controls="nav-review"
-                            aria-selected="false">Reviews</button>
+                            aria-selected="false">{{ __('Reviews') }}</button>
                     </div>
                 </nav>
                 <div class="tab-content tab-item" id="nav-tabContent">
@@ -112,7 +112,7 @@
                     <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab"
                         tabindex="0" data-aos="fade-up">
                         <div class="product-intro-section">
-                            <h5 class="intro-heading">Introduction</h5>
+                            <h5 class="intro-heading">{{ __('Introduction') }}</h5>
                             <p class="product-details">
                                 {{ $product->description }}
                             </p>
@@ -122,7 +122,7 @@
                     <div class="tab-pane fade" id="nav-review" role="tabpanel" aria-labelledby="nav-review-tab"
                         tabindex="0">
                         <div class="product-review-section" data-aos="fade-up">
-                            <h5 class="intro-heading">Reviews</h5>
+                            <h5 class="intro-heading">{{ __('Reviews') }}</h5>
 
                             @foreach ($reviews as $review)
                                 <div class="review-wrapper">

@@ -11,9 +11,9 @@ class AllBrandsComponent extends Component
     {
         $brand = Brand::find($id);
         if ($brand->delete()) {
-            session()->flash('success', 'Brand has been deleted successfully!');
+            session()->flash('success', __('Brand has been deleted successfully!'));
         } else {
-            session()->flash('error', 'Something went wrong!');
+            session()->flash('error', __('Something went wrong!'));
         }
     }
     public function editeBrand($id)

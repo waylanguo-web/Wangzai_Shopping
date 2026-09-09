@@ -26,7 +26,7 @@
                                         d="M13.1081 11.3378C13.9592 11.3378 14.811 11.3338 15.6621 11.3391C16.5019 11.3444 16.9952 11.843 16.9972 12.6862C16.9998 13.6813 17.0005 14.6765 16.9972 15.6716C16.9939 16.4822 16.48 16.9968 15.6687 16.9981C13.9546 17.0014 12.2411 17.0014 10.527 16.9981C9.72831 16.9961 9.21977 16.4935 9.21446 15.6962C9.20716 14.6791 9.20716 13.6614 9.21446 12.6443C9.21977 11.837 9.71237 11.3464 10.521 11.3398C11.3834 11.3325 12.2458 11.3378 13.1081 11.3378Z" />
                                 </svg>
                             </span>
-                            <span class="text">Dashboard</span>
+                            <span class="text">{{ __('Dashboard') }}</span>
                         </button>
 
                         <button class="nav-link" id="v-pills-profile-tab" data-bs-toggle="pill"
@@ -42,7 +42,7 @@
                                 </svg>
                             </span>
                             <span class="text">
-                                Personal Info
+                                {{ __('Personal Info') }}
                             </span>
                         </button>
 
@@ -59,7 +59,7 @@
                                 </svg>
                             </span>
                             <span class="text">
-                                Orders
+                                {{ __('Orders') }}
                             </span>
                         </button>
 
@@ -89,7 +89,7 @@
                                 </svg>
                             </span>
                             <span class="text">
-                                Reviews
+                                {{ __('Reviews') }}
                             </span>
                         </button>
 
@@ -104,7 +104,7 @@
                                 </svg>
                             </span>
                             <span class="text">
-                                Change Password
+                                {{ __('Change Password') }}
                             </span>
                         </button>
 
@@ -127,7 +127,7 @@
                                     </svg>
                                 </span>
                                 <span class="text">
-                                    Logout
+                                    {{ __('Logout') }}
                                 </span>
                             </a>
                         </div>
@@ -141,8 +141,8 @@
                             aria-labelledby="v-pills-home-tab" tabindex="0">
                             <div class="user-profile">
                                 <div class="user-title">
-                                    <p class="paragraph">Hello, {{ $user->name }}</p>
-                                    <h5 class="heading">Welcome to your Profile</h5>
+                                    <p class="paragraph">{{ __('Hello,') }} {{ $user->name }}</p>
+                                    <h5 class="heading">{{ __('Welcome to your Profile') }}</h5>
                                 </div>
                                 <div class="profile-section">
                                     <div class="row g-5">
@@ -163,7 +163,7 @@
                                                     </span>
                                                 </div>
                                                 <div class="wrapper-content">
-                                                    <p class="paragraph">New Orders</p>
+                                                    <p class="paragraph">{{ __('New Orders') }}</p>
                                                     <h3 class="heading">
                                                         {{ $user->orders()->whereIn('status', ['processing', 'pending', 'ordered'])->count() }}
                                                     </h3>
@@ -186,7 +186,7 @@
                                                     </span>
                                                 </div>
                                                 <div class="wrapper-content">
-                                                    <p class="paragraph">Delivery Completed</p>
+                                                    <p class="paragraph">{{ __('Delivery Completed') }}</p>
                                                     <h3 class="heading">
                                                         {{ $user->orders()->whereIn('status', ['completed', 'delivered'])->count() }}
                                                     </h3>
@@ -196,12 +196,12 @@
                                         <div class="col-lg-12">
                                             <div class="info-section">
                                                 <div class="seller-info">
-                                                    <h5 class="heading">Personal Information</h5>
+                                                    <h5 class="heading">{{ __('Personal Information') }}</h5>
                                                     <div class="info-list">
                                                         <div class="info-title">
-                                                            <p>Name:</p>
-                                                            <p>Email:</p>
-                                                            <p>Phone:</p>
+                                                            <p>{{ __('Name:') }}</p>
+                                                            <p>{{ __('Email:') }}</p>
+                                                            <p>{{ __('Phone:') }}</p>
                                                         </div>
                                                         <div class="info-details">
                                                             <p>{{ $user->name }}</p>
@@ -227,10 +227,10 @@
                                                 <div class="review-form">
                                                     <div class=" account-inner-form">
                                                         <div class="review-form-name">
-                                                            <label for="name" class="form-label">Name*</label>
+                                                            <label for="name" class="form-label">{{ __('Name*') }}</label>
                                                             <input type="text" id="name"
                                                                 class="form-control @error('name') is-invalid @enderror"
-                                                                placeholder="Name" wire:model="name">
+                                                                placeholder="{{ __('Full Name') }}" wire:model="name">
                                                             @error('name')
                                                                 <span class="invalid-feedback"> {{ $message }}</span>
                                                             @enderror
@@ -238,7 +238,7 @@
                                                     </div>
                                                     <div class=" account-inner-form">
                                                         <div class="review-form-name">
-                                                            <label for="email" class="form-label">Email*</label>
+                                                            <label for="email" class="form-label">{{ __('Email*') }}</label>
                                                             <input type="email" id="email"
                                                                 class="form-control @error('email') is-invalid @enderror"
                                                                 placeholder="user@gmail.com" wire:model="email">
@@ -248,7 +248,7 @@
                                                         </div>
                                                         <div class="review-form-name">
                                                             <label for="phone_number"
-                                                                class="form-label">Phone*</label>
+                                                                class="form-label">{{ __('Phone*') }}</label>
                                                             <input type="tel" id="phone_number"
                                                                 class="form-control @error('phone_number') is-invalid @enderror"
                                                                 placeholder="+0000000000" wire:model="phone_number">
@@ -258,8 +258,7 @@
                                                         </div>
                                                     </div>
                                                     <div class="submit-btn">
-                                                        <button type="submit" class="shop-btn update-btn">Update
-                                                            Profile</button>
+                                                        <button type="submit" class="shop-btn update-btn">{{ __('Update Profile') }}</button>
                                                     </div>
                                             </form>
                                         </div>
@@ -276,17 +275,17 @@
                                 <tbody>
                                     <tr class="table-row table-top-row">
                                         <td class="table-wrapper wrapper-product">
-                                            <h5 class="table-heading">ORDER_ID : PRODUCT NAME : QUANTITY : UNIT PRICE
+                                            <h5 class="table-heading">{{ __('ORDER_ID : PRODUCT NAME : QUANTITY : UNIT PRICE') }}
                                             </h5>
                                         </td>
                                         <td class="table-wrapper wrapper-total">
                                             <div class="table-wrapper-center">
-                                                <h5 class="table-heading">TOTAL</h5>
+                                                <h5 class="table-heading">{{ __('TOTAL') }}</h5>
                                             </div>
                                         </td>
                                         <td class="table-wrapper wrapper-total">
                                             <div class="table-wrapper-center">
-                                                <h5 class="table-heading">STATUS</h5>
+                                                <h5 class="table-heading">{{ __('STATUS') }}</h5>
                                             </div>
                                         </td>
                                     </tr>
@@ -312,7 +311,17 @@
                                             </td>
                                             <td class="table-wrapper wrapper-total">
                                                 <div class="table-wrapper-center">
-                                                    <h5 class="heading">{{ $order->status }}</h5>
+                                                    @php
+                                                        $dsLabels = \App\Models\Order::displayStatusLabels();
+                                                        $ds = $order->display_status;
+                                                        $label = $dsLabels[$ds] ?? ['text' => $ds, 'class' => 'bg-secondary'];
+                                                    @endphp
+                                                    <span class="badge rounded-pill {{ $label['class'] }}">{{ __($label['text']) }}</span>
+                                                    @if (in_array($order->payment_status, ['unpaid', 'rejected']))
+                                                        <a href="{{ route('user.upload-proof', ['order_id' => $order->id]) }}" class="btn btn-sm btn-outline-primary mt-1 d-block">
+                                                            {{ $order->payment_status == 'rejected' ? __('Re-upload Proof') : __('Upload Proof') }}
+                                                        </a>
+                                                    @endif
                                                 </div>
                                             </td>
                                         </tr>

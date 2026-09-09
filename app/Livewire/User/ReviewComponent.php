@@ -35,9 +35,9 @@ class ReviewComponent extends Component
         $review->rating = $this->rating;
         $review->review = $this->review;
         if ($review->save()) {
-            session()->flash('success', 'Review has been updated successfully!');
+            session()->flash('success', __('Review has been updated successfully!'));
         } else {
-            session()->flash('error', 'Something went wrong!');
+            session()->flash('error', __('Something went wrong!'));
         }
     }
     public function render()

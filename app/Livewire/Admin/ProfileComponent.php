@@ -40,7 +40,7 @@ class ProfileComponent extends Component
 
         $user = auth()->user();
         $user->update($validatedData);
-        session()->flash('success', 'Profile information updated successfully.');
+        session()->flash('success', __('Profile information updated successfully.'));
     }
     public function updatePassword()
     {
@@ -65,9 +65,9 @@ class ProfileComponent extends Component
             $user->update([
                 'password' => \Hash::make($this->new_password)
             ]);
-            session()->flash('success', 'Password updated successfully.');
+            session()->flash('success', __('Password updated successfully.'));
         } else {
-            session()->flash('error', 'Current password is incorrect.');
+            session()->flash('error', __('Current password is incorrect.'));
         }
     }
     public function updateProfileImage()
@@ -95,10 +95,10 @@ class ProfileComponent extends Component
         if($user->update([
             'profile_image' => $imageLocation
         ])){
-            session()->flash('success', 'Profile photo updated successfully.');
+            session()->flash('success', __('Profile photo updated successfully.'));
         }
         else{
-            session()->flash('error', 'Something went wrong.');
+            session()->flash('error', __('Something went wrong.'));
         }
     }
     public function render()
