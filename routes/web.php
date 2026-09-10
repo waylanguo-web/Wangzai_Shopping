@@ -55,22 +55,5 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
     Route::get('/admin/dashboard/orders', App\Livewire\Admin\AllOrdersComponent::class)->name('admin.orders');
     Route::get('/admin/dashboard/orders/details/{id}', App\Livewire\Admin\OrderDetailsComponent::class)->name('admin.orders.details');
     Route::get('/admin/dashboard/payment-review', App\Livewire\Admin\PaymentReviewComponent::class)->name('admin.payment-review');
-    Route::get('/admin/dashboard/support-ticket', App\Livewire\Admin\SupportTicketComponent::class);
     Route::get('/admin/dashboard/profile', App\Livewire\Admin\ProfileComponent::class)->name('admin.profile');
-});
-
-
-
-// Some command routes for live server
-Route::prefix('/tool-links')->group(function () {
-    Route::get('/link-storage', function () {
-        $storagePath = storage_path('app/public');
-        $destPath = $_SERVER['DOCUMENT_ROOT'] . '/storage';
-        symlink($storagePath, $destPath);
-        return 'success';
-    });
-    Route::get('/optimize-clear', function () {
-        Artisan::call('optimize:clear');
-        return 'success';
-    });
 });
