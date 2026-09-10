@@ -4,9 +4,9 @@
             @include('livewire.user.partials._alerts')
             <div class="login-section account-section">
                 <form wire:submit.prevent="login">
-                    @error('login_error')
-                        <div class="alert alert-danger" role="alert">{{ $message }}</div>
-                    @enderror
+                    @if ($loginError)
+                        <div class="alert alert-danger" role="alert">{{ $loginError }}</div>
+                    @endif
                     <div class="review-form">
                         <h5 class="comment-title">{{ __('Login') }}</h5>
                         <div class="account-inner-form">

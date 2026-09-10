@@ -6,30 +6,21 @@ use Livewire\Component;
 
 class LoginComponent extends Component
 {
-    public $email, $password;
+    public $email, $password, $loginError;
 
     public function login()
     {
+        $this->loginError = null;
+
         $validatedData = $this->validate([
             'email' => 'required|email',
             'password' => 'required|min:6',
         ]);
 
-        if (!$validatedData) {
-            foreach ($validatedData as $key => $value) {
-                if ($value) {
-                    $errors[$key] = $value;
-                }
-            }
-            foreach ($errors as $key => $value) {
-                $this->addError($key, $value);
-            }
-        }
-
         if (auth()->attempt(['email' => $this->email, 'password' => $this->password])) {
             return redirect()->route('user.home');
         } else {
-            $this->addError('login_error', __('Invalid email or password.'));
+            $this->loginError = __('Invalid email or password.');
         }
     }
     public function render()
