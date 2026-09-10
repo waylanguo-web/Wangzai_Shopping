@@ -29,8 +29,7 @@ class LoginComponent extends Component
         if (auth()->attempt(['email' => $this->email, 'password' => $this->password])) {
             return redirect()->route('user.home');
         } else {
-            session()->flash('error', __('Invalid email or password.'));
-            return redirect()->route('login');
+            $this->addError('login_error', __('Invalid email or password.'));
         }
     }
     public function render()
