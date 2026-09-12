@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Order extends Model
 {
     use HasFactory;
-    protected $fillable=['status','total_price','user_id', 'payment_method', 'payment_number', 'payment_transaction_id', 'payment_status', 'shipping_name', 'shipping_phone', 'shipping_address', 'shipping_city', 'shipping_postal_code'];
+    protected $fillable=['status','total_price','user_id', 'payment_method', 'payment_number', 'payment_transaction_id', 'payment_status', 'shipping_name', 'shipping_phone', 'shipping_address', 'shipping_city', 'shipping_postal_code', 'tracking_number'];
 
     public function getDisplayStatusAttribute()
     {

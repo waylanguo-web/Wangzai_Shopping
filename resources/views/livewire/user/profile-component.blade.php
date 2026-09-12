@@ -317,6 +317,9 @@
                                                         $label = $dsLabels[$ds] ?? ['text' => $ds, 'class' => 'bg-secondary'];
                                                     @endphp
                                                     <span class="badge rounded-pill {{ $label['class'] }}">{{ __($label['text']) }}</span>
+                                                    @if ($order->tracking_number && in_array($order->status, ['shipped', 'delivered']))
+                                                        <small class="d-block mt-1">{{ __('Tracking Number') }}: <span class="text-primary">{{ $order->tracking_number }}</span></small>
+                                                    @endif
                                                     @if (in_array($order->payment_status, ['unpaid', 'rejected']))
                                                         <a href="{{ route('user.upload-proof', ['order_id' => $order->id]) }}" class="btn btn-sm btn-outline-primary mt-1 d-block">
                                                             {{ $order->payment_status == 'rejected' ? __('Re-upload Proof') : __('Upload Proof') }}

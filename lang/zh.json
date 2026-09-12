@@ -333,5 +333,8 @@
     "Order confirmed as delivered.": "订单已确认到货。",
     "Cannot confirm delivery: order is not shipped yet.": "无法确认到货：订单尚未发货。",
     "Shipment is locked until payment is confirmed (status must be Paid).": "支付确认前无法发货（状态需为已付款）。",
-    "Payment Review": "支付凭证审核"
+    "Payment Review": "支付凭证审核",
+    "Tracking Number": "快递单号",
+    "Tracking Number is required to ship.": "发货前必须填写快递单号。",
+    "e.g. SF1234567890": "例如：SF1234567890"
 }

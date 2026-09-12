@@ -13,6 +13,7 @@ class OrderDetailsComponent extends Component
     public $payment_status;
     public $delivery_details;
     public $mail_title;
+    public $tracking_number;
 
     public function mount($id)
     {
@@ -29,12 +30,17 @@ class OrderDetailsComponent extends Component
             $this->payment_number = $order->payment_number;
             $this->payment_transaction_id = $order->payment_transaction_id;
             $this->payment_status = $order->payment_status;
+            $this->tracking_number = $order->tracking_number;
         }
     }
     public function save_order_details()
     {
         $order = Order::find($this->order_id);
         if ($order) {
+            if ($this->status == 'shipped' && trim($this->tracking_number) === '') {
+                $this->addError('tracking_number', __('Tracking number is required to ship.'));
+                return;
+            }
             $order->update([
                 'status' => $this->status
             ]);
@@ -50,6 +56,11 @@ class OrderDetailsComponent extends Component
                 ->with('error', __('Cannot deliver: payment is not confirmed yet.'));
         }
 
+        if (trim($this->tracking_number) === '') {
+            $this->addError('tracking_number', __('Tracking number is required to ship.'));
+            return;
+        }
+
         $mail_data = [
             'user_name' => $this->buyer_name,
             'product' => $this->delivery_mail,
@@ -59,7 +70,8 @@ class OrderDetailsComponent extends Component
         if (Mail::to($this->buyer_email)->send(new DeliverProductMail($mail_data))) {
             Order::find($this->order_id)
                 ->update([
-                    'status' => 'shipped'
+                    'status' => 'shipped',
+                    'tracking_number' => $this->tracking_number
                 ]);
             return redirect()->route('admin.orders')->with('success', __('Product shipped successfully.'));
         } else {

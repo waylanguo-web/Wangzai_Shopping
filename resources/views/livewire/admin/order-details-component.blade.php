@@ -100,6 +100,13 @@
 
                 @if ($payment_status == 'paid' && $status == 'ordered')
                     <div class="col-md-12">
+                        <label for="tracking_number" class="form-label">{{ __('Tracking Number') }} <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control @error('tracking_number') is-invalid @enderror" id="tracking_number" wire:model="tracking_number" placeholder="{{ __('e.g. SF1234567890') }}">
+                        @error('tracking_number')
+                            <span class="invalid-feedback d-block">{{ $message }}</span>
+                        @enderror
+                    </div>
+                    <div class="col-md-12">
                         <label for="delivery_mail_title" class="form-label">{{ __('Delivery Mail Title') }}</label>
                         <input type="text" class="form-control" id="delivery_mail_title" wire:model="mail_title" placeholder="{{ __('Mail Title') }}">
                     </div>
@@ -113,6 +120,9 @@
                         <div class="alert alert-info">
                             {{ __('Order is in transit. Click below to confirm delivery.') }}
                         </div>
+                        @if ($tracking_number)
+                            <p><strong>{{ __('Tracking Number') }}:</strong> <span class="text-primary">{{ $tracking_number }}</span></p>
+                        @endif
                         <button type="button" wire:click="confirmDelivered" class="btn btn-success">
                             <i class="bi bi-check-lg"></i> {{ __('Confirm Delivered') }}
                         </button>
@@ -122,6 +132,9 @@
                         <div class="alert alert-success">
                             {{ __('Order has been delivered.') }}
                         </div>
+                        @if ($tracking_number)
+                            <p><strong>{{ __('Tracking Number') }}:</strong> <span class="text-primary">{{ $tracking_number }}</span></p>
+                        @endif
                     </div>
                 @else
                     <div class="col-md-12">
