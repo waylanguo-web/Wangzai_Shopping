@@ -26,9 +26,12 @@ class ProductInfoComponent extends Component
     }
     public function addToCart()
     {
-        
         if (!auth()->check()) {
             return redirect()->route('login');
+        }
+        if (!$this->subscription_id) {
+            $this->addError('subscription_id', __('Please select a package first.'));
+            return;
         }
         $cart = Cart::where('user_id', auth()->user()->id)->where('subscription_id', $this->subscription_id)->first();
         if ($cart) {

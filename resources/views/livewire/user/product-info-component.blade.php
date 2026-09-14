@@ -16,6 +16,9 @@
                 </option>
             @endforeach
         </select>
+        @error('subscription_id')
+            <span class="text-danger d-block mb-2">{{ $message }}</span>
+        @enderror
     </div>
     <div class="product-quantity">
         @auth
