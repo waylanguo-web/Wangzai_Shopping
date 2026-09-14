@@ -267,17 +267,67 @@
 
                     <div class="tab-pane fade" id="v-pills-order" role="tabpanel"
                         aria-labelledby="v-pills-order-tab" tabindex="0">
-                        <div class="cart-section">
-                            <table>
-                                <tbody>
-                                    <tr class="table-row table-top-row">
-                                        <td class="table-wrapper wrapper-orderid">
-                                            <h5 class="table-heading">{{ __('Order ID') }}</h5>
-                                        </td>
-                                        <td class="table-wrapper wrapper-image">
-                                            <div class="table-wrapper-center">
-                                                <h5 class="table-heading">{{ __('Image') }}</h5>
+                        <div class="order-cards">
+                            @foreach ($user->orders as $orderA\Models\Order::displayStatusLabels();
+                                $ds = $order->display_status;
+                                $label = $dsLabels[$ds] ?? ['text' => $ds, 'class' => 'bg-secondary'];
+                            @endphp
+                            <article class="order-card">
+                                <div class="order-card-top">
+                                    <div class="order-card-id">
+                                        <span class="order-card-id-label">{{ __('Order ID') }}</span>
+                                        <strong>#{{ $order->id }}</strong>
+                                    </div>
+                                    <div class="order-card-status status-{{ $ds }}">
+                                        <span class="dot"></span>{{ __($label['text']) }}
+                                    </div>
+                                </div>
+                                <div class="order-card-body">
+                                    @foreach ($order->orderItems as $orderItem)
+                                        <div class="order-card-item">
+                                            @if ($orderItem->product && $orderItem->product->image->isNotEmpty())
+                                                <img class="order-card-img"
+                                                    src="{{ Storage::url($orderItem->product->image->first()->image) }}" alt="">
+                                            @else
+                                                <span class="order-card-img order-card-img-empty"><i class="fa-regular fa-image"></i></span>
+                                            @endif
+                                            <div class="order-card-info">
+                                                <div class="order-card-name">{{ $orderItem->product?->name ?? __('(Product removed)') }}</div>
+                                                <div class="order-card-meta">{{ __('Quantity') }} ×{{ $orderItem->quantity }} · {{ __('Unit Price') }} {{$currency_symbol}}{{ $orderItem->price }}</div>
                                             </div>
+                                            <div class="order-card-item-price">{{$currency_symbol}}{{ $orderItem->price }}</div>
+                                        </div>
+                                    @endforeach
+                                </div>
+                                <div class="order-card-bottom">
+                                    <div class="order-card-tracking">
+                                        @if ($order->tracking_number && in_array($order->status, ['shipped', 'delivered']))
+                                            <i class="fa-solid fa-truck-fast"></i>
+                                            <span class="shipping-label">{{ __('Tracking Number') }}</span>
+                                            <span class="tracking-code">{{ $order->tracking_number }}</span>
+                                            <button type="button" class="btn-copy-tracking" data-tracking="{{ $order->tracking_number }}" title="{{ __('Copy') }}">
+                                                <i class="fa-regular fa-copy"></i>
+                                            </button>
+                                        @else
+                                            <span class="order-card-note">—</span>
+                                        @endif
+                                    </div>
+                                    <div class="order-card-total">
+                                        <span class="order-card-total-label">{{ __('TOTAL') }}</span>
+                                        <strong>{{$currency_symbol}}{{ $order->total_price }}</strong>
+                                    </div>
+                                </div>
+                                @if (in_array($order->payment_status, ['unpaid', 'rejected']))
+                                    <div class="order-card-action">
+                                        <a href="{{ route('user.upload-proof', ['order_id' => $order->id]) }}" class="order-card-btn">
+                                            {{ $order->payment_status == 'rejected' ? __('Re-upload Proof') : __('Upload Proof') }}
+                                        </a>
+                                    </div>
+                                @endif
+                            </article>
+                            @endforeach
+                        </div>
+                    </div>
                                         </td>
                                         <td class="table-wrapper wrapper-product">
                                             <h5 class="table-heading">{{ __('Product Name') }}</h5>

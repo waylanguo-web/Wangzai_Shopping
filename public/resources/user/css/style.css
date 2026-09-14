@@ -4544,4 +4544,211 @@ table .ticket-row:hover {
 }
 .user-dashboard .nav-content .modal-wrapper.active {
   display: flex;
+}
+
+/* ===== Order Cards (modern card-based order list) ===== */
+.order-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+.order-card {
+  background: #fff;
+  border: 1px solid #ececec;
+  border-radius: 1.4rem;
+  box-shadow: 0 0.8rem 2.8rem rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+}
+.order-card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1.6rem;
+  padding: 1.8rem 2.2rem;
+  border-bottom: 1px solid #ececec;
+}
+.order-card-id {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+}
+.order-card-id-label {
+  color: #8a8a8a;
+  font-size: 1.3rem;
+}
+.order-card-id strong {
+  font-size: 1.5rem;
+  font-weight: 650;
+}
+.order-card-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+  padding: 0.6rem 1rem;
+  border-radius: 0.7rem;
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+.order-card-status .dot {
+  width: 0.6rem;
+  height: 0.6rem;
+  border-radius: 50%;
+  background: currentColor;
+}
+.order-card-status.status-unpaid { color: #b45309; background: #fef3c7; }
+.order-card-status.status-pending_review { color: #1d4ed8; background: #dbeafe; }
+.order-card-status.status-pending_shipment { color: #7c3aed; background: #ede9fe; }
+.order-card-status.status-shipping { color: #15803d; background: #ecfdf3; }
+.order-card-status.status-delivered { color: #166534; background: #dcfce7; }
+.order-card-status.status-rejected { color: #dc2626; background: #fee2e2; }
+.order-card-status.status-cancelled { color: #6b7280; background: #f3f4f6; }
+.order-card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 1.6rem;
+  padding: 2.2rem;
+}
+.order-card-item {
+  display: grid;
+  grid-template-columns: 8.2rem minmax(0, 1fr) auto;
+  gap: 1.7rem;
+  align-items: center;
+}
+.order-card-img {
+  width: 8.2rem;
+  height: 8.2rem;
+  object-fit: cover;
+  border-radius: 1rem;
+  border: 1px solid #ececec;
+}
+.order-card-img-empty {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: #f5f5f7;
+  color: #b9bcc8;
+  font-size: 2rem;
+}
+.order-card-info {
+  min-width: 0;
+}
+.order-card-name {
+  font-size: 1.6rem;
+  font-weight: 600;
+  margin-bottom: 0.8rem;
+  color: #171717;
+}
+.order-card-meta {
+  font-size: 1.3rem;
+  color: #8a8a8a;
+}
+.order-card-item-price {
+  font-size: 1.7rem;
+  font-weight: 650;
+  white-space: nowrap;
+  color: #171717;
+}
+.order-card-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1.6rem;
+  padding: 1.5rem 2.2rem;
+  background: #fcfcfc;
+  border-top: 1px solid #ececec;
+}
+.order-card-tracking {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  min-width: 0;
+}
+.order-card-tracking .fa-truck-fast {
+  color: #AE1C9A;
+  font-size: 1.6rem;
+}
+.order-card-tracking .shipping-label {
+  color: #8a8a8a;
+  font-size: 1.2rem;
+}
+.order-card-tracking .tracking-code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #353535;
+  user-select: all;
+}
+.order-card-tracking .btn-copy-tracking {
+  border: 0;
+  background: #f0f0f1;
+  color: #606060;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 0.7rem;
+  cursor: pointer;
+  font-size: 1.4rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+}
+.order-card-tracking .btn-copy-tracking:hover {
+  background: #e8e8ea;
+}
+.order-card-tracking .btn-copy-tracking.copied {
+  background: #15803d;
+  color: #fff;
+}
+.order-card-note {
+  color: #b9bcc8;
+  font-size: 1.4rem;
+}
+.order-card-total {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  white-space: nowrap;
+}
+.order-card-total-label {
+  color: #8a8a8a;
+  font-size: 1.2rem;
+}
+.order-card-total strong {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #AE1C9A;
+}
+.order-card-action {
+  padding: 0 2.2rem 1.5rem;
+}
+.order-card-btn {
+  display: inline-block;
+  padding: 0.8rem 1.6rem;
+  border: 1px solid #AE1C9A;
+  color: #AE1C9A;
+  border-radius: 0.7rem;
+  text-decoration: none;
+  font-size: 1.3rem;
+  font-weight: 600;
+  transition: all 0.2s;
+}
+.order-card-btn:hover {
+  background: #AE1C9A;
+  color: #fff;
+}
+@media (max-width: 560px) {
+  .order-card-item {
+    grid-template-columns: 6.4rem 1fr;
+  }
+  .order-card-img {
+    width: 6.4rem;
+    height: 6.4rem;
+  }
+  .order-card-item-price {
+    grid-column: 2;
+  }
+  .order-card-bottom {
+    align-items: flex-start;
+    flex-direction: column;
+  }
 }/*# sourceMappingURL=style.css.map */
