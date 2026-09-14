@@ -271,9 +271,11 @@
                             <table>
                                 <tbody>
                                     <tr class="table-row table-top-row">
+                                        <td class="table-wrapper wrapper-orderid">
+                                            <h5 class="table-heading">{{ __('Order ID') }}</h5>
+                                        </td>
                                         <td class="table-wrapper wrapper-product">
-                                            <h5 class="table-heading">{{ __('ORDER_ID : PRODUCT NAME : QUANTITY : UNIT PRICE') }}
-                                            </h5>
+                                            <h5 class="table-heading">{{ __('Product Name') }}</h5>
                                         </td>
                                         <td class="table-wrapper wrapper-total">
                                             <div class="table-wrapper-center">
@@ -285,19 +287,28 @@
                                                 <h5 class="table-heading">{{ __('STATUS') }}</h5>
                                             </div>
                                         </td>
+                                        <td class="table-wrapper wrapper-tracking">
+                                            <h5 class="table-heading">{{ __('Tracking Number') }}</h5>
+                                        </td>
                                     </tr>
 
                                     @foreach ($user->orders as $order)
                                         <tr class="table-row ticket-row">
-                                            <td class="table-wrapper">
+                                            <td class="table-wrapper wrapper-orderid">
                                                 <div class="table-wrapper-center">
-                                                    <h5 class="heading">{{ $order->id }}</h5>
+                                                    <h5 class="heading">#{{ $order->id }}</h5>
                                                 </div>
+                                            </td>
+                                            <td class="table-wrapper wrapper-product">
                                                 @foreach ($order->orderItems as $orderItem)
-                                                    <div class="table-wrapper-center">
-                                                        <h6 class="heading">{{ $orderItem->product->name }} -
-                                                            {{ $orderItem->subscription->name }}
-                                                            x{{ $orderItem->quantity }} : {{ $orderItem->price }}</h6>
+                                                    <div class="order-item-row">
+                                                        <span class="order-item-name">
+                                                            {{ $orderItem->product?->name ?? __('(Product removed)') }}
+                                                            @if ($orderItem->subscription)
+                                                                - {{ $orderItem->subscription->name }}
+                                                            @endif
+                                                        </span>
+                                                        <span class="order-item-qty">x{{ $orderItem->quantity }} · {{$currency_symbol}}{{ $orderItem->price }}</span>
                                                     </div>
                                                 @endforeach
                                             </td>
@@ -314,17 +325,25 @@
                                                         $label = $dsLabels[$ds] ?? ['text' => $ds, 'class' => 'bg-secondary'];
                                                     @endphp
                                                     <span class="badge rounded-pill {{ $label['class'] }}">{{ __($label['text']) }}</span>
-                                                    @if ($order->tracking_number && in_array($order->status, ['shipped', 'delivered']))
-                                                        <div class="tracking-box mt-2">
-                                                            <i class="fa-solid fa-truck-fast"></i>
-                                                            <span class="tracking-label">{{ __('Tracking Number') }}</span>
-                                                            <span class="tracking-number">{{ $order->tracking_number }}</span>
-                                                        </div>
-                                                    @endif
                                                     @if (in_array($order->payment_status, ['unpaid', 'rejected']))
                                                         <a href="{{ route('user.upload-proof', ['order_id' => $order->id]) }}" class="btn btn-sm btn-outline-primary mt-1 d-block">
                                                             {{ $order->payment_status == 'rejected' ? __('Re-upload Proof') : __('Upload Proof') }}
                                                         </a>
+                                                    @endif
+                                                </div>
+                                            </td>
+                                            <td class="table-wrapper wrapper-tracking">
+                                                <div class="table-wrapper-center">
+                                                    @if ($order->tracking_number && in_array($order->status, ['shipped', 'delivered']))
+                                                        <div class="tracking-box">
+                                                            <i class="fa-solid fa-truck-fast"></i>
+                                                            <span class="tracking-number">{{ $order->tracking_number }}</span>
+                                                            <button type="button" class="btn-copy-tracking" data-tracking="{{ $order->tracking_number }}" title="{{ __('Copy') }}">
+                                                                <i class="fa-regular fa-copy"></i>
+                                                            </button>
+                                                        </div>
+                                                    @else
+                                                        <span class="tracking-empty">—</span>
                                                     @endif
                                                 </div>
                                             </td>
@@ -334,6 +353,37 @@
                             </table>
                         </div>
                     </div>
+                    @script
+                    <script>
+                        document.addEventListener('click', function (e) {
+                            var btn = e.target.closest('.btn-copy-tracking');
+                            if (!btn) return;
+                            var text = btn.getAttribute('data-tracking') || '';
+                            function done() {
+                                var icon = btn.querySelector('i');
+                                icon.className = 'fa-solid fa-check';
+                                btn.classList.add('copied');
+                                setTimeout(function () {
+                                    icon.className = 'fa-regular fa-copy';
+                                    btn.classList.remove('copied');
+                                }, 1500);
+                            }
+                            if (navigator.clipboard && window.isSecureContext) {
+                                navigator.clipboard.writeText(text).then(done);
+                            } else {
+                                var ta = document.createElement('textarea');
+                                ta.value = text;
+                                ta.style.position = 'fixed';
+                                ta.style.opacity = '0';
+                                document.body.appendChild(ta);
+                                ta.select();
+                                document.execCommand('copy');
+                                document.body.removeChild(ta);
+                                done();
+                            }
+                        });
+                    </script>
+                    @endscript
 
                     <div class="tab-pane fade" id="v-pills-review" role="tabpanel"
                         aria-labelledby="v-pills-review-tab" tabindex="0">

@@ -2736,31 +2736,77 @@ hr {
   display: inline-flex;
   align-items: center;
   gap: 0.8rem;
-  padding: 1rem 1.6rem;
-  margin-top: 1rem;
+  padding: 1.2rem 1.6rem;
   background: rgba(174, 28, 154, 0.08);
   border: 1px dashed #AE1C9A;
   border-radius: 0.6rem;
-  font-size: 1.5rem;
   max-width: 100%;
 }
 .cart-section .tracking-box i {
   color: #AE1C9A;
 }
-.cart-section .tracking-box .tracking-label {
-  font-weight: 500;
-  color: #232532;
-}
 .cart-section .tracking-box .tracking-number {
   font-weight: 700;
-  font-size: 1.8rem;
+  font-size: 2rem;
   color: #AE1C9A;
   letter-spacing: 0.05em;
   word-break: break-all;
   user-select: all;
 }
+.cart-section .tracking-empty {
+  color: #b9bcc8;
+  font-size: 1.8rem;
+}
+.cart-section .btn-copy-tracking {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #AE1C9A;
+  color: #AE1C9A;
+  background: transparent;
+  border-radius: 0.5rem;
+  padding: 0.5rem 0.9rem;
+  font-size: 1.5rem;
+  transition: all 0.2s;
+}
+.cart-section .btn-copy-tracking:hover {
+  background: #AE1C9A;
+  color: #FFFFFF;
+}
+.cart-section .btn-copy-tracking.copied {
+  background: #198754;
+  border-color: #198754;
+  color: #FFFFFF;
+}
+.cart-section .order-item-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1.2rem;
+  padding: 0.4rem 0;
+}
+.cart-section .order-item-row + .order-item-row {
+  border-top: 1px dashed #e9e7e7;
+}
+.cart-section .order-item-name {
+  font-size: 1.7rem;
+  font-weight: 600;
+  color: #232532;
+}
+.cart-section .order-item-qty {
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: #6b6f82;
+  white-space: nowrap;
+}
+.cart-section .table-row .wrapper-orderid {
+  width: 12rem;
+}
+.cart-section .table-row .wrapper-tracking {
+  width: 30rem;
+}
 .cart-section .table-row .wrapper-product {
-  width: 38rem;
+  width: 34rem;
   padding: 2rem 0 2rem 4rem;
 }
 .cart-section .table-row .wrapper-total {
