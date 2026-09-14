@@ -6,6 +6,7 @@ use App\Models\Order;
 use Livewire\Component;
 use App\Mail\DeliverProductMail;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Log;
 
 class OrderDetailsComponent extends Component
 {
@@ -61,23 +62,25 @@ class OrderDetailsComponent extends Component
             return;
         }
 
+        $order = Order::find($this->order_id);
+        $order->update([
+            'status' => 'shipped',
+            'tracking_number' => $this->tracking_number
+        ]);
+
         $mail_data = [
             'user_name' => $this->buyer_name,
             'product' => $this->delivery_mail,
             'title' => $this->mail_title,
             'order_id' => $this->order_id
         ];
-        if (Mail::to($this->buyer_email)->send(new DeliverProductMail($mail_data))) {
-            Order::find($this->order_id)
-                ->update([
-                    'status' => 'shipped',
-                    'tracking_number' => $this->tracking_number
-                ]);
-            return redirect()->route('admin.orders')->with('success', __('Product shipped successfully.'));
-        } else {
-            return redirect()->route('admin.orders')->with('error', __('Something went wrong.'));
+        try {
+            Mail::to($this->buyer_email)->send(new DeliverProductMail($mail_data));
+        } catch (\Throwable $e) {
+            Log::warning("Deliver mail failed for order #{$this->order_id}: {$e->getMessage()}");
         }
 
+        return redirect()->route('admin.orders')->with('success', __('Product shipped successfully.'));
     }
 
     public function confirmDelivered()
