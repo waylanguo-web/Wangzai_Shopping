@@ -19,7 +19,7 @@
     <link rel="stylesheet" href="{{ asset('resources/user/css/aos-3.0.0.css') }}">
 
     <!--------------- additional-css ---------------->
-    <link rel="stylesheet" href="{{ asset('resources/user/css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('resources/user/css/style.css') }}?v={{ filemtime(public_path('resources/user/css/style.css')) }}">
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
