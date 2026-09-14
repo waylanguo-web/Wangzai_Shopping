@@ -2729,8 +2729,10 @@ hr {
   font-size: 1.6rem;
 }
 .cart-section .table-row .badge {
-  font-size: 1.4rem;
-  padding: 0.6em 1em;
+  font-size: 2.4rem;
+  padding: 0.8em 1.4em;
+  font-weight: 600;
+  line-height: 1.2;
 }
 .cart-section .tracking-box {
   display: inline-flex;
@@ -2778,29 +2780,12 @@ hr {
   border-color: #198754;
   color: #FFFFFF;
 }
-.cart-section .order-item-row {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 1.2rem;
-  padding: 0.4rem 0;
-}
-.cart-section .order-item-row + .order-item-row {
-  border-top: 1px dashed #e9e7e7;
-}
-.cart-section .order-item-info {
-  display: flex;
-  align-items: center;
-  gap: 1.2rem;
-  min-width: 0;
-}
 .cart-section .order-item-img {
-  width: 6rem;
-  height: 6rem;
+  width: 7rem;
+  height: 7rem;
   object-fit: cover;
   border-radius: 0.6rem;
   border: 1px solid #e9e7e7;
-  flex-shrink: 0;
 }
 .cart-section .order-item-img-empty {
   display: inline-flex;
@@ -2810,28 +2795,45 @@ hr {
   color: #b9bcc8;
 }
 .cart-section .order-item-name {
-  font-size: 1.7rem;
+  font-size: 1.8rem;
   font-weight: 600;
   color: #232532;
 }
 .cart-section .order-item-qty {
-  font-size: 1.5rem;
+  font-size: 1.6rem;
   font-weight: 500;
   color: #6b6f82;
   white-space: nowrap;
 }
-.cart-section .table-row .wrapper-orderid {
-  width: 12rem;
+.cart-section .order-item-price {
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: #232532;
 }
-.cart-section .table-row .wrapper-tracking {
-  width: 30rem;
+.cart-section .table-row .wrapper-orderid {
+  width: 10rem;
+}
+.cart-section .table-row .wrapper-image {
+  width: 11rem;
 }
 .cart-section .table-row .wrapper-product {
-  width: 34rem;
-  padding: 2rem 0 2rem 4rem;
+  width: 28rem;
+  padding: 2rem 0 2rem 2rem;
+}
+.cart-section .table-row .wrapper-qty {
+  width: 8rem;
+}
+.cart-section .table-row .wrapper-price {
+  width: 12rem;
 }
 .cart-section .table-row .wrapper-total {
-  width: 20rem;
+  width: 12rem;
+}
+.cart-section .table-row .wrapper-status {
+  width: 18rem;
+}
+.cart-section .table-row .wrapper-tracking {
+  width: 26rem;
 }
 @media (max-width:1023px) {
   .cart-section {
