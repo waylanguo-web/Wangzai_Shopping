@@ -84,6 +84,8 @@
     
     @livewireScripts
 
+    <script src="{{ asset('resources/shared/livewire-loading.js') }}"></script>
+
 </body>
 
 </html>
