@@ -2720,10 +2720,44 @@ hr {
   object-fit: contain;
 }
 .cart-section .table-row .table-wrapper .heading {
-  font-size: 1.6rem;
+  font-size: 1.8rem;
 }
 .cart-section .table-row .table-wrapper .heading:hover {
   color: #AE1C9A;
+}
+.cart-section .table-row .table-wrapper h6 {
+  font-size: 1.6rem;
+}
+.cart-section .table-row .badge {
+  font-size: 1.4rem;
+  padding: 0.6em 1em;
+}
+.cart-section .tracking-box {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.8rem;
+  padding: 1rem 1.6rem;
+  margin-top: 1rem;
+  background: rgba(174, 28, 154, 0.08);
+  border: 1px dashed #AE1C9A;
+  border-radius: 0.6rem;
+  font-size: 1.5rem;
+  max-width: 100%;
+}
+.cart-section .tracking-box i {
+  color: #AE1C9A;
+}
+.cart-section .tracking-box .tracking-label {
+  font-weight: 500;
+  color: #232532;
+}
+.cart-section .tracking-box .tracking-number {
+  font-weight: 700;
+  font-size: 1.8rem;
+  color: #AE1C9A;
+  letter-spacing: 0.05em;
+  word-break: break-all;
+  user-select: all;
 }
 .cart-section .table-row .wrapper-product {
   width: 38rem;
@@ -2782,14 +2816,14 @@ table .ticket-row:hover {
   object-fit: contain;
 }
 .table-row .table-wrapper .heading {
-  font-size: 1.6rem;
+  font-size: 1.8rem;
   font-weight: 600;
 }
 .table-row .table-wrapper .heading:hover {
   color: #AE1C9A;
 }
 .table-row .table-wrapper .table-heading {
-  font-size: 1.5rem;
+  font-size: 1.7rem;
   font-weight: 500;
 }
 .table-row .table-wrapper p {

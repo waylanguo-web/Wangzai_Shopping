@@ -54,6 +54,19 @@ class ProfileComponent extends Component
 
     public function render()
     {
-        return view('livewire.user.profile-component');
+        $orderStats = [
+            'pending_review' => 0,
+            'pending_shipment' => 0,
+            'shipping' => 0,
+            'delivered' => 0,
+        ];
+        foreach ($this->user->orders as $order) {
+            $ds = $order->display_status;
+            if (isset($orderStats[$ds])) {
+                $orderStats[$ds]++;
+            }
+        }
+
+        return view('livewire.user.profile-component', ['orderStats' => $orderStats]);
     }
 }
