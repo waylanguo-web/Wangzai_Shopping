@@ -2781,8 +2781,8 @@ hr {
   color: #FFFFFF;
 }
 .cart-section .order-item-img {
-  width: 7rem;
-  height: 7rem;
+  width: 6rem;
+  height: 6rem;
   object-fit: cover;
   border-radius: 0.6rem;
   border: 1px solid #e9e7e7;
@@ -2811,35 +2811,38 @@ hr {
   color: #232532;
 }
 .cart-section .table-row .wrapper-orderid {
-  width: 10rem;
-}
-.cart-section .table-row .wrapper-image {
-  width: 11rem;
-}
-.cart-section .table-row .wrapper-product {
-  width: 28rem;
-  padding: 2rem 0 2rem 2rem;
-}
-.cart-section .table-row .wrapper-qty {
   width: 8rem;
 }
+.cart-section .table-row .wrapper-image {
+  width: 9rem;
+}
+.cart-section .table-row .wrapper-product {
+  padding: 2rem 1rem;
+}
+.cart-section .table-row .wrapper-qty {
+  width: 7rem;
+}
 .cart-section .table-row .wrapper-price {
-  width: 12rem;
+  width: 9rem;
 }
 .cart-section .table-row .wrapper-total {
-  width: 12rem;
+  width: 9rem;
 }
 .cart-section .table-row .wrapper-status {
-  width: 18rem;
+  width: 14rem;
 }
 .cart-section .table-row .wrapper-tracking {
-  width: 26rem;
+  width: 20rem;
 }
 @media (max-width:1023px) {
   .cart-section {
     overflow-x: scroll;
     border: 1px solid rgba(174, 28, 154, 0.08);
   }
+}
+
+.cart-section table {
+  table-layout: fixed;
 }
 
 table {
@@ -2854,7 +2857,7 @@ table .ticket-row:hover {
 }
 @media (max-width:1023px) {
   table .table-wrapper {
-    min-width: 25rem;
+    min-width: 12rem;
   }
 }
 
