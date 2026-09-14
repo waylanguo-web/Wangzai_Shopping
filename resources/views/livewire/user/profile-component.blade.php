@@ -302,12 +302,15 @@
                                             <td class="table-wrapper wrapper-product">
                                                 @foreach ($order->orderItems as $orderItem)
                                                     <div class="order-item-row">
-                                                        <span class="order-item-name">
-                                                            {{ $orderItem->product?->name ?? __('(Product removed)') }}
-                                                            @if ($orderItem->subscription)
-                                                                - {{ $orderItem->subscription->name }}
+                                                        <div class="order-item-info">
+                                                            @if ($orderItem->product && $orderItem->product->image->isNotEmpty())
+                                                                <img src="{{ Storage::url($orderItem->product->image->first()->image) }}"
+                                                                    alt="" class="order-item-img">
+                                                            @else
+                                                                <span class="order-item-img order-item-img-empty"><i class="fa-regular fa-image"></i></span>
                                                             @endif
-                                                        </span>
+                                                            <span class="order-item-name">{{ $orderItem->product?->name ?? __('(Product removed)') }}</span>
+                                                        </div>
                                                         <span class="order-item-qty">x{{ $orderItem->quantity }} · {{$currency_symbol}}{{ $orderItem->price }}</span>
                                                     </div>
                                                 @endforeach
