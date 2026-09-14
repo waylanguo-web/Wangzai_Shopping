@@ -2780,6 +2780,16 @@ hr {
   border-color: #198754;
   color: #FFFFFF;
 }
+.cart-section .order-cell-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.cart-section .order-cell-line {
+  display: flex;
+  align-items: center;
+  min-height: 6rem;
+}
 .cart-section .order-item-img {
   width: 6rem;
   height: 6rem;
@@ -2842,7 +2852,7 @@ hr {
 }
 
 .cart-section table {
-  table-layout: fixed;
+  table-layout: auto;
 }
 
 table {

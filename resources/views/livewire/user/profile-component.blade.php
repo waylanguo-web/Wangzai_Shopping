@@ -312,76 +312,85 @@
                                             $dsLabels = \App\Models\Order::displayStatusLabels();
                                             $ds = $order->display_status;
                                             $label = $dsLabels[$ds] ?? ['text' => $ds, 'class' => 'bg-secondary'];
-                                            $rowspan = $order->orderItems->count() ?: 1;
-                                            $isFirst = true;
                                         @endphp
-                                        @foreach ($order->orderItems as $orderItem)
-                                            <tr class="table-row ticket-row">
-                                                @if ($isFirst)
-                                                    <td class="table-wrapper wrapper-orderid" rowspan="{{ $rowspan }}">
-                                                        <div class="table-wrapper-center">
-                                                            <h5 class="heading">#{{ $order->id }}</h5>
-                                                        </div>
-                                                    </td>
-                                                @endif
-                                                <td class="table-wrapper wrapper-image">
-                                                    <div class="table-wrapper-center">
-                                                        @if ($orderItem->product && $orderItem->product->image->isNotEmpty())
-                                                            <img src="{{ Storage::url($orderItem->product->image->first()->image) }}"
-                                                                alt="" class="order-item-img">
-                                                        @else
-                                                            <span class="order-item-img order-item-img-empty"><i class="fa-regular fa-image"></i></span>
-                                                        @endif
-                                                    </div>
-                                                </td>
-                                                <td class="table-wrapper wrapper-product">
-                                                    <span class="order-item-name">{{ $orderItem->product?->name ?? __('(Product removed)') }}</span>
-                                                </td>
-                                                <td class="table-wrapper wrapper-qty">
-                                                    <div class="table-wrapper-center">
-                                                        <span class="order-item-qty">x{{ $orderItem->quantity }}</span>
-                                                    </div>
-                                                </td>
-                                                <td class="table-wrapper wrapper-price">
-                                                    <div class="table-wrapper-center">
-                                                        <span class="order-item-price">{{$currency_symbol}}{{ $orderItem->price }}</span>
-                                                    </div>
-                                                </td>
-                                                @if ($isFirst)
-                                                    <td class="table-wrapper wrapper-total" rowspan="{{ $rowspan }}">
-                                                        <div class="table-wrapper-center">
-                                                            <h5 class="heading">{{$currency_symbol}}{{ $order->total_price }}</h5>
-                                                        </div>
-                                                    </td>
-                                                    <td class="table-wrapper wrapper-status" rowspan="{{ $rowspan }}">
-                                                        <div class="table-wrapper-center">
-                                                            <span class="badge rounded-pill {{ $label['class'] }}">{{ __($label['text']) }}</span>
-                                                            @if (in_array($order->payment_status, ['unpaid', 'rejected']))
-                                                                <a href="{{ route('user.upload-proof', ['order_id' => $order->id]) }}" class="btn btn-sm btn-outline-primary mt-2 d-block">
-                                                                    {{ $order->payment_status == 'rejected' ? __('Re-upload Proof') : __('Upload Proof') }}
-                                                                </a>
-                                                            @endif
-                                                        </div>
-                                                    </td>
-                                                    <td class="table-wrapper wrapper-tracking" rowspan="{{ $rowspan }}">
-                                                        <div class="table-wrapper-center">
-                                                            @if ($order->tracking_number && in_array($order->status, ['shipped', 'delivered']))
-                                                                <div class="tracking-box">
-                                                                    <i class="fa-solid fa-truck-fast"></i>
-                                                                    <span class="tracking-number">{{ $order->tracking_number }}</span>
-                                                                    <button type="button" class="btn-copy-tracking" data-tracking="{{ $order->tracking_number }}" title="{{ __('Copy') }}">
-                                                                        <i class="fa-regular fa-copy"></i>
-                                                                    </button>
-                                                                </div>
+                                        <tr class="table-row ticket-row">
+                                            <td class="table-wrapper wrapper-orderid">
+                                                <div class="table-wrapper-center">
+                                                    <h5 class="heading">#{{ $order->id }}</h5>
+                                                </div>
+                                            </td>
+                                            <td class="table-wrapper wrapper-image">
+                                                <div class="order-cell-stack">
+                                                    @foreach ($order->orderItems as $orderItem)
+                                                        <div class="order-cell-line">
+                                                            @if ($orderItem->product && $orderItem->product->image->isNotEmpty())
+                                                                <img src="{{ Storage::url($orderItem->product->image->first()->image) }}"
+                                                                    alt="" class="order-item-img">
                                                             @else
-                                                                <span class="tracking-empty">—</span>
+                                                                <span class="order-item-img order-item-img-empty"><i class="fa-regular fa-image"></i></span>
                                                             @endif
                                                         </div>
-                                                    </td>
-                                                @endif
-                                            </tr>
-                                            @php $isFirst = false; @endphp
-                                        @endforeach
+                                                    @endforeach
+                                                </div>
+                                            </td>
+                                            <td class="table-wrapper wrapper-product">
+                                                <div class="order-cell-stack">
+                                                    @foreach ($order->orderItems as $orderItem)
+                                                        <div class="order-cell-line">
+                                                            <span class="order-item-name">{{ $orderItem->product?->name ?? __('(Product removed)') }}</span>
+                                                        </div>
+                                                    @endforeach
+                                                </div>
+                                            </td>
+                                            <td class="table-wrapper wrapper-qty">
+                                                <div class="order-cell-stack">
+                                                    @foreach ($order->orderItems as $orderItem)
+                                                        <div class="order-cell-line table-wrapper-center">
+                                                            <span class="order-item-qty">x{{ $orderItem->quantity }}</span>
+                                                        </div>
+                                                    @endforeach
+                                                </div>
+                                            </td>
+                                            <td class="table-wrapper wrapper-price">
+                                                <div class="order-cell-stack">
+                                                    @foreach ($order->orderItems as $orderItem)
+                                                        <div class="order-cell-line table-wrapper-center">
+                                                            <span class="order-item-price">{{$currency_symbol}}{{ $orderItem->price }}</span>
+                                                        </div>
+                                                    @endforeach
+                                                </div>
+                                            </td>
+                                            <td class="table-wrapper wrapper-total">
+                                                <div class="table-wrapper-center">
+                                                    <h5 class="heading">{{$currency_symbol}}{{ $order->total_price }}</h5>
+                                                </div>
+                                            </td>
+                                            <td class="table-wrapper wrapper-status">
+                                                <div class="table-wrapper-center">
+                                                    <span class="badge rounded-pill {{ $label['class'] }}">{{ __($label['text']) }}</span>
+                                                    @if (in_array($order->payment_status, ['unpaid', 'rejected']))
+                                                        <a href="{{ route('user.upload-proof', ['order_id' => $order->id]) }}" class="btn btn-sm btn-outline-primary mt-2 d-block">
+                                                            {{ $order->payment_status == 'rejected' ? __('Re-upload Proof') : __('Upload Proof') }}
+                                                        </a>
+                                                    @endif
+                                                </div>
+                                            </td>
+                                            <td class="table-wrapper wrapper-tracking">
+                                                <div class="table-wrapper-center">
+                                                    @if ($order->tracking_number && in_array($order->status, ['shipped', 'delivered']))
+                                                        <div class="tracking-box">
+                                                            <i class="fa-solid fa-truck-fast"></i>
+                                                            <span class="tracking-number">{{ $order->tracking_number }}</span>
+                                                            <button type="button" class="btn-copy-tracking" data-tracking="{{ $order->tracking_number }}" title="{{ __('Copy') }}">
+                                                                <i class="fa-regular fa-copy"></i>
+                                                            </button>
+                                                        </div>
+                                                    @else
+                                                        <span class="tracking-empty">—</span>
+                                                    @endif
+                                                </div>
+                                            </td>
+                                        </tr>
                                     @endforeach
                                 </tbody>
                             </table>
