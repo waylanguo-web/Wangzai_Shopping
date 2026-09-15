@@ -268,10 +268,12 @@
                     <div class="tab-pane fade" id="v-pills-order" role="tabpanel"
                         aria-labelledby="v-pills-order-tab" tabindex="0">
                         <div class="order-cards">
-                            @foreach ($user->orders as $orderA\Models\Order::displayStatusLabels();
-                                $ds = $order->display_status;
-                                $label = $dsLabels[$ds] ?? ['text' => $ds, 'class' => 'bg-secondary'];
-                            @endphp
+                            @foreach ($user->orders as $order)
+                                @php
+                                    $dsLabels = \App\Models\Order::displayStatusLabels();
+                                    $ds = $order->display_status;
+                                    $label = $dsLabels[$ds] ?? ['text' => $ds, 'class' => 'bg-secondary'];
+                                @endphp
                             <article class="order-card">
                                 <div class="order-card-top">
                                     <div class="order-card-id">
@@ -328,124 +330,7 @@
                             @endforeach
                         </div>
                     </div>
-                                        </td>
-                                        <td class="table-wrapper wrapper-product">
-                                            <h5 class="table-heading">{{ __('Product Name') }}</h5>
-                                        </td>
-                                        <td class="table-wrapper wrapper-qty">
-                                            <div class="table-wrapper-center">
-                                                <h5 class="table-heading">{{ __('Quantity') }}</h5>
-                                            </div>
-                                        </td>
-                                        <td class="table-wrapper wrapper-price">
-                                            <div class="table-wrapper-center">
-                                                <h5 class="table-heading">{{ __('Unit Price') }}</h5>
-                                            </div>
-                                        </td>
-                                        <td class="table-wrapper wrapper-total">
-                                            <div class="table-wrapper-center">
-                                                <h5 class="table-heading">{{ __('TOTAL') }}</h5>
-                                            </div>
-                                        </td>
-                                        <td class="table-wrapper wrapper-status">
-                                            <div class="table-wrapper-center">
-                                                <h5 class="table-heading">{{ __('STATUS') }}</h5>
-                                            </div>
-                                        </td>
-                                        <td class="table-wrapper wrapper-tracking">
-                                            <h5 class="table-heading">{{ __('Tracking Number') }}</h5>
-                                        </td>
-                                    </tr>
 
-                                    @foreach ($user->orders as $order)
-                                        @php
-                                            $dsLabels = \App\Models\Order::displayStatusLabels();
-                                            $ds = $order->display_status;
-                                            $label = $dsLabels[$ds] ?? ['text' => $ds, 'class' => 'bg-secondary'];
-                                        @endphp
-                                        <tr class="table-row ticket-row">
-                                            <td class="table-wrapper wrapper-orderid">
-                                                <div class="table-wrapper-center">
-                                                    <h5 class="heading">#{{ $order->id }}</h5>
-                                                </div>
-                                            </td>
-                                            <td class="table-wrapper wrapper-image">
-                                                <div class="order-cell-stack">
-                                                    @foreach ($order->orderItems as $orderItem)
-                                                        <div class="order-cell-line">
-                                                            @if ($orderItem->product && $orderItem->product->image->isNotEmpty())
-                                                                <img src="{{ Storage::url($orderItem->product->image->first()->image) }}"
-                                                                    alt="" class="order-item-img">
-                                                            @else
-                                                                <span class="order-item-img order-item-img-empty"><i class="fa-regular fa-image"></i></span>
-                                                            @endif
-                                                        </div>
-                                                    @endforeach
-                                                </div>
-                                            </td>
-                                            <td class="table-wrapper wrapper-product">
-                                                <div class="order-cell-stack">
-                                                    @foreach ($order->orderItems as $orderItem)
-                                                        <div class="order-cell-line">
-                                                            <span class="order-item-name">{{ $orderItem->product?->name ?? __('(Product removed)') }}</span>
-                                                        </div>
-                                                    @endforeach
-                                                </div>
-                                            </td>
-                                            <td class="table-wrapper wrapper-qty">
-                                                <div class="order-cell-stack">
-                                                    @foreach ($order->orderItems as $orderItem)
-                                                        <div class="order-cell-line table-wrapper-center">
-                                                            <span class="order-item-qty">x{{ $orderItem->quantity }}</span>
-                                                        </div>
-                                                    @endforeach
-                                                </div>
-                                            </td>
-                                            <td class="table-wrapper wrapper-price">
-                                                <div class="order-cell-stack">
-                                                    @foreach ($order->orderItems as $orderItem)
-                                                        <div class="order-cell-line table-wrapper-center">
-                                                            <span class="order-item-price">{{$currency_symbol}}{{ $orderItem->price }}</span>
-                                                        </div>
-                                                    @endforeach
-                                                </div>
-                                            </td>
-                                            <td class="table-wrapper wrapper-total">
-                                                <div class="table-wrapper-center">
-                                                    <h5 class="heading">{{$currency_symbol}}{{ $order->total_price }}</h5>
-                                                </div>
-                                            </td>
-                                            <td class="table-wrapper wrapper-status">
-                                                <div class="table-wrapper-center">
-                                                    <span class="badge rounded-pill {{ $label['class'] }}">{{ __($label['text']) }}</span>
-                                                    @if (in_array($order->payment_status, ['unpaid', 'rejected']))
-                                                        <a href="{{ route('user.upload-proof', ['order_id' => $order->id]) }}" class="btn btn-sm btn-outline-primary mt-2 d-block">
-                                                            {{ $order->payment_status == 'rejected' ? __('Re-upload Proof') : __('Upload Proof') }}
-                                                        </a>
-                                                    @endif
-                                                </div>
-                                            </td>
-                                            <td class="table-wrapper wrapper-tracking">
-                                                <div class="table-wrapper-center">
-                                                    @if ($order->tracking_number && in_array($order->status, ['shipped', 'delivered']))
-                                                        <div class="tracking-box">
-                                                            <i class="fa-solid fa-truck-fast"></i>
-                                                            <span class="tracking-number">{{ $order->tracking_number }}</span>
-                                                            <button type="button" class="btn-copy-tracking" data-tracking="{{ $order->tracking_number }}" title="{{ __('Copy') }}">
-                                                                <i class="fa-regular fa-copy"></i>
-                                                            </button>
-                                                        </div>
-                                                    @else
-                                                        <span class="tracking-empty">—</span>
-                                                    @endif
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
                     @script
                     <script>
                         document.addEventListener('click', function (e) {
