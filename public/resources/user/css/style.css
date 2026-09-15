@@ -3164,7 +3164,8 @@ table .ticket-row:hover {
   gap: 0px;
 }
 .login-section .review-form {
-  width: 51.2rem;
+  width: 100%;
+  max-width: 51.2rem;
   height: 63rem;
   background-color: #FFFFFF;
   padding: 4rem;
@@ -3231,7 +3232,8 @@ table .ticket-row:hover {
 }
 
 .account-section .review-form {
-  width: 57.2rem;
+  width: 100%;
+  max-width: 57.2rem;
   height: 79.1rem;
 }
 .account-section .account-inner-form {
@@ -4860,6 +4862,16 @@ table .ticket-row:hover {
   .checkout-section img.img-thumbnail {
     max-width: 200px;
     width: 100%;
+  }
+
+  /* --- About-us & blog fixed-width sections --- */
+  .about-service .about-wrapper {
+    width: 100% !important;
+    max-width: 28.6rem;
+  }
+  .blog-post-section {
+    width: 100% !important;
+    max-width: 33.5rem;
   }
 
   /* --- Prevent long words from overflowing --- */
