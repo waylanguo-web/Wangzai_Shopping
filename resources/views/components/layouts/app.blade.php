@@ -35,6 +35,13 @@
     @livewire('user.header-component')
     <!--------------- header-section-end --------------->
 
+    <!--------------- mobile-back-bar --------------->
+    <div class="mobile-back-bar d-lg-none" id="mobileBackBar">
+        <button type="button" onclick="history.back()" aria-label="Go back">
+            <i class="fa-solid fa-arrow-left"></i> <span>{{ __('Back') }}</span>
+        </button>
+    </div>
+
     {{$slot}}
 
     <!--------------- footer-section--------------->
@@ -69,6 +76,18 @@
     @livewireScripts
 
     <script src="{{ asset('resources/shared/livewire-loading.js') }}"></script>
+
+    <script>
+        (function() {
+            var backBar = document.getElementById('mobileBackBar');
+            if (backBar) {
+                var path = window.location.pathname;
+                if (path === '/' || path === '' || history.length <= 1) {
+                    backBar.style.display = 'none';
+                }
+            }
+        })();
+    </script>
 
 </body>
 

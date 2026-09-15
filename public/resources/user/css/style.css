@@ -4916,4 +4916,71 @@ table .ticket-row:hover {
   }
 }
 
+/* ==================== Mobile Sidebar Nav + Back Button ==================== */
+.mobile-nav-menu {
+  margin-top: 2rem;
+  padding-top: 2rem;
+  border-top: 1px solid #eee;
+}
+.mobile-nav-menu ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.mobile-nav-menu li {
+  border-bottom: 1px solid #f0f0f0;
+}
+.mobile-nav-menu a {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  padding: 1.2rem 0.5rem;
+  font-size: 1.5rem;
+  color: #232532;
+  text-decoration: none;
+  font-family: "Jost", sans-serif;
+  transition: background 0.2s, color 0.2s;
+}
+.mobile-nav-menu a:hover,
+.mobile-nav-menu a:active {
+  color: #AE1C9A;
+  background: #FFFAFE;
+}
+.mobile-nav-menu a i {
+  width: 2rem;
+  text-align: center;
+  font-size: 1.6rem;
+  color: #797979;
+}
+.mobile-nav-menu a:hover i,
+.mobile-nav-menu a:active i {
+  color: #AE1C9A;
+}
+
+.mobile-back-bar {
+  position: sticky;
+  top: 0;
+  z-index: 1020;
+  background: #fff;
+  border-bottom: 1px solid #eee;
+  padding: 0.8rem 1rem;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+}
+.mobile-back-bar button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: none;
+  border: none;
+  font-size: 1.4rem;
+  color: #232532;
+  cursor: pointer;
+  padding: 0.4rem 0.8rem;
+  border-radius: 0.4rem;
+  font-family: "Jost", sans-serif;
+}
+.mobile-back-bar button:active {
+  background: #f0f0f0;
+}
+
 /*# sourceMappingURL=style.css.map */

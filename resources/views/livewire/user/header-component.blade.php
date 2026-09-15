@@ -176,6 +176,44 @@
                         </div>
                     </div>
                     @livewire('user.mobile-menu-search-component')
+
+                    <nav class="mobile-nav-menu">
+                        <ul>
+                            <li>
+                                <a href="{{ route('user.home') }}"><i class="fa-solid fa-house"></i> {{ __('Home') }}</a>
+                            </li>
+                            <li>
+                                <a href="{{ route('user.products') }}"><i class="fa-solid fa-grid-2"></i> {{ __('All Products') }}</a>
+                            </li>
+                            <li>
+                                <a href="{{ route('user.cart') }}"><i class="fa-solid fa-cart-shopping"></i> {{ __('Cart') }}</a>
+                            </li>
+                            <li>
+                                <a href="{{ route('user.wishlist') }}"><i class="fa-regular fa-heart"></i> {{ __('Wishlist') }}</a>
+                            </li>
+                            <li>
+                                <a href="{{ route('about-us') }}"><i class="fa-solid fa-circle-info"></i> {{ __('About') }}</a>
+                            </li>
+                            <li>
+                                <a href="{{ route('contact-us') }}"><i class="fa-solid fa-phone"></i> {{ __('Contact') }}</a>
+                            </li>
+                            @auth
+                                <li>
+                                    <a href="{{ route('user.profile') }}"><i class="fa-regular fa-user"></i> {{ __('Profile') }}</a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('logout') }}"><i class="fa-solid fa-right-from-bracket"></i> {{ __('Logout') }}</a>
+                                </li>
+                            @else
+                                <li>
+                                    <a href="{{ route('login') }}"><i class="fa-solid fa-right-to-bracket"></i> {{ __('Login') }}</a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('register') }}"><i class="fa-solid fa-user-plus"></i> {{ __('Register') }}</a>
+                                </li>
+                            @endauth
+                        </ul>
+                    </nav>
                 </div>
             </div>
         </nav>
