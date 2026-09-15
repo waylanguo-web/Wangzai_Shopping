@@ -149,6 +149,15 @@
                         </svg>
                     </span>
                 </a>
+                @auth
+                    <a href="{{ route('user.profile') }}" class="header-cart cart-item mobile-user-icon">
+                        <i class="fa-regular fa-user" style="font-size: 2.2rem; color: #6E6D79;"></i>
+                    </a>
+                @else
+                    <a href="{{ route('login') }}" class="header-cart cart-item mobile-user-icon">
+                        <i class="fa-solid fa-right-to-bracket" style="font-size: 2.2rem; color: #6E6D79;"></i>
+                    </a>
+                @endauth
             </div>
 
             <div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions">

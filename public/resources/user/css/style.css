@@ -4917,6 +4917,12 @@ table .ticket-row:hover {
 }
 
 /* ==================== Mobile Sidebar Nav + Back Button ==================== */
+.mobile-user-icon {
+  margin-left: 1.5rem;
+  display: flex;
+  align-items: center;
+}
+
 .mobile-nav-menu {
   margin-top: 2rem;
   padding-top: 2rem;
