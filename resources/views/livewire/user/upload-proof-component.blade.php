@@ -35,7 +35,7 @@
                                         @enderror
                                         @if ($proof_image)
                                             <div class="mt-2">
-                                                <img src="{{ $proof_image->temporaryUrl() }}" width="200rem" class="img-thumbnail">
+                                                <img src="{{ $proof_image->temporaryUrl() }}" style="max-width: 200px; width: 100%;" class="img-thumbnail">
                                             </div>
                                         @endif
                                     </div>

@@ -149,7 +149,7 @@
                                             @if ($selectedPaymentType == 'qr' && $selectedQrImage)
                                                 <div class="m-3 text-center">
                                                     <h6 class="text-warning">{{ __('Scan the QR code below to pay') }}</h6>
-                                                    <img src="{{ Storage::url($selectedQrImage) }}" width="200rem" class="img-thumbnail d-block mx-auto">
+                                                    <img src="{{ Storage::url($selectedQrImage) }}" style="max-width: 200px; width: 100%;" class="img-thumbnail d-block mx-auto">
                                                     <p class="text-muted small mt-1">{{ __('After payment, click "Place Order Now" then upload the payment screenshot.') }}</p>
                                                 </div>
                                             @else
@@ -158,7 +158,7 @@
                                                         {{ $payment_method }} {{ __('Number*') }}</label>
                                                     <input type="tel" id="payment_number"
                                                         class="form-control @error('payment_number') is-invalid @enderror"
-                                                        placeholder="+000000000000" wire:model="payment_number" style="width: 20rem; height: 3rem; font-size: 1.2rem;">
+                                                        placeholder="+000000000000" wire:model="payment_number" style="width: 100%; max-width: 20rem; height: 3rem; font-size: 1.2rem;">
                                                     @error('payment_number')
                                                         <span class="invalid-feedback"> {{ $message }}</span>
                                                     @enderror
@@ -167,7 +167,7 @@
                                                     <label for="payment_transaction_id" class="form-label" style="font-size: 1.4rem;">{{ __('Transaction ID*') }}</label>
                                                     <input type="text" id="payment_transaction_id"
                                                         class="form-control @error('payment_transaction_id') is-invalid @enderror"
-                                                        placeholder="F9UHDS645FFSD" wire:model="payment_transaction_id" style="width: 20rem; height: 3rem; font-size: 1.2rem;">
+                                                        placeholder="F9UHDS645FFSD" wire:model="payment_transaction_id" style="width: 100%; max-width: 20rem; height: 3rem; font-size: 1.2rem;">
                                                     @error('payment_transaction_id')
                                                         <span class="invalid-feedback"> {{ $message }}</span>
                                                     @enderror

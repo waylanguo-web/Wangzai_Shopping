@@ -4751,4 +4751,157 @@ table .ticket-row:hover {
     align-items: flex-start;
     flex-direction: column;
   }
-}/*# sourceMappingURL=style.css.map */
+}
+
+/* ==================== Mobile Responsive Overrides ==================== */
+
+/* --- Global: allow horizontal scroll as safety net, fix font sizes --- */
+@media (max-width: 1023px) {
+  h2 { font-size: 3.2rem; }
+  h3 { font-size: 2.6rem; }
+  h4 { font-size: 2.2rem; }
+  h5 { font-size: 1.8rem; }
+
+  /* Profile nav-item: full width on tablet */
+  .user-dashboard .nav-item {
+    width: 100% !important;
+  }
+
+  /* Profile section padding */
+  .user-profile-section {
+    padding: 2rem 1.5rem !important;
+  }
+  .user-dashboard .nav-content .profile-section .info-section {
+    padding: 2rem 1rem !important;
+  }
+  .user-dashboard .nav-content .profile-section .product-wrapper .heading {
+    font-size: 2.4rem;
+  }
+}
+
+@media (max-width: 767px) {
+  h2 { font-size: 2.4rem; }
+  h3 { font-size: 2rem; }
+  h4 { font-size: 1.7rem; }
+  h5 { font-size: 1.5rem; }
+
+  /* --- Cart / Wishlist tables: allow horizontal scroll, override fixed widths --- */
+  .cart-section {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  .cart-section table,
+  .wishlist-section table {
+    min-width: 0;
+    width: 100%;
+  }
+  /* Override all fixed column widths */
+  .cart-section .table-row .wrapper-orderid,
+  .cart-section .table-row .wrapper-image,
+  .cart-section .table-row .wrapper-product,
+  .cart-section .table-row .wrapper-qty,
+  .cart-section .table-row .wrapper-price,
+  .cart-section .table-row .wrapper-total,
+  .cart-section .table-row .wrapper-status,
+  .cart-section .table-row .wrapper-tracking,
+  .wishlist-section .table-wrapper,
+  .table-row .wrapper-product,
+  .table-row .wrapper-total {
+    width: auto !important;
+    min-width: 0 !important;
+    padding: 0.5rem 0.3rem !important;
+  }
+  /* Table cells: remove min-width, allow shrink */
+  table .table-wrapper {
+    min-width: 0 !important;
+  }
+  /* Quantity selector */
+  .cart-section .quantity,
+  .product-info-content .product-quantity .quantity {
+    width: 100% !important;
+    max-width: 12rem;
+    padding: 0 1rem !important;
+  }
+
+  /* --- Product detail thumbnails --- */
+  .product-bottom .slider-bottom-img {
+    width: 6rem !important;
+    height: 6rem !important;
+  }
+
+  /* --- Review / seller / compare fixed-width buttons & inputs --- */
+  .review-form .review-btn .shop-btn {
+    width: 100% !important;
+    max-width: 30rem;
+  }
+  .seller-information .review-form .form-btn .shop-btn,
+  .seller-wrapper .seller-details .seller-img {
+    width: 100% !important;
+    max-width: 25rem;
+  }
+  .seller-wrapper .seller-details .seller-img {
+    height: auto !important;
+    aspect-ratio: 1;
+  }
+  .product-compair .cart-center .search {
+    width: 100% !important;
+    max-width: 25rem;
+  }
+
+  /* --- Profile section padding --- */
+  .user-profile-section {
+    padding: 1.5rem 1rem !important;
+  }
+  .user-dashboard .nav-content .profile-section .info-section {
+    padding: 1.5rem 0.5rem !important;
+  }
+
+  /* --- Checkout QR code image --- */
+  .checkout-section img.img-thumbnail {
+    max-width: 200px;
+    width: 100%;
+  }
+
+  /* --- Prevent long words from overflowing --- */
+  .order-item-name,
+  .order-card-name,
+  .table-heading,
+  .heading {
+    word-break: break-word;
+    overflow-wrap: break-word;
+  }
+}
+
+@media (max-width: 560px) {
+  h2 { font-size: 2rem; }
+  h3 { font-size: 1.7rem; }
+  h4 { font-size: 1.5rem; }
+  h5 { font-size: 1.3rem; }
+
+  /* Cart table: stack columns vertically on very small screens */
+  .cart-section .table-row {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+    padding: 1rem 0;
+    border-bottom: 1px solid #eee;
+  }
+  .cart-section .table-top-row {
+    display: none;
+  }
+  .cart-section .table-wrapper {
+    display: flex !important;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.3rem 0 !important;
+  }
+  .cart-section .table-wrapper-center {
+    display: contents !important;
+  }
+  .cart-section .quantity {
+    width: auto !important;
+    padding: 0 !important;
+  }
+}
+
+/*# sourceMappingURL=style.css.map */
