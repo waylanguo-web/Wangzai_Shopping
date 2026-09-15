@@ -135,8 +135,8 @@
                                         </div>
                                     </div>
                                     <div class="review-textarea">
-                                        <label for="floatingTextarea">{{ __('Massage*') }}</label>
-                                        <textarea class="form-control @error('message') is-invalid @enderror" placeholder="{{ __('Write Massage...........') }}"
+                                        <label for="floatingTextarea">{{ __('Message*') }}</label>
+                                        <textarea class="form-control @error('message') is-invalid @enderror" placeholder="{{ __('Write Message...') }}"
                                             id="floatingTextarea" rows="3" wire:model="message"></textarea>
                                         @error('message')
                                             <span class="invalid-feedback"> {{ $message }}</span>

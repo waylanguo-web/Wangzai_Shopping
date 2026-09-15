@@ -153,7 +153,7 @@
                                                 </div>
                                                 <div class="wrapper-content">
                                                     <p class="paragraph">{{ __('Pending Review') }}</p>
-                                                    <h3 class="heading">{{ $orderStats['pending_review'] }}</h3>
+                                                    <h3 class="heading">{{ $orderStats['pending_review'] ?? 0 }}</h3>
                                                 </div>
                                             </div>
                                         </div>
@@ -164,7 +164,7 @@
                                                 </div>
                                                 <div class="wrapper-content">
                                                     <p class="paragraph">{{ __('Pending Shipment') }}</p>
-                                                    <h3 class="heading">{{ $orderStats['pending_shipment'] }}</h3>
+                                                    <h3 class="heading">{{ $orderStats['pending_shipment'] ?? 0 }}</h3>
                                                 </div>
                                             </div>
                                         </div>
@@ -175,7 +175,7 @@
                                                 </div>
                                                 <div class="wrapper-content">
                                                     <p class="paragraph">{{ __('Shipping') }}</p>
-                                                    <h3 class="heading">{{ $orderStats['shipping'] }}</h3>
+                                                    <h3 class="heading">{{ $orderStats['shipping'] ?? 0 }}</h3>
                                                 </div>
                                             </div>
                                         </div>
@@ -186,7 +186,7 @@
                                                 </div>
                                                 <div class="wrapper-content">
                                                     <p class="paragraph">{{ __('Delivered') }}</p>
-                                                    <h3 class="heading">{{ $orderStats['delivered'] }}</h3>
+                                                    <h3 class="heading">{{ $orderStats['delivered'] ?? 0 }}</h3>
                                                 </div>
                                             </div>
                                         </div>

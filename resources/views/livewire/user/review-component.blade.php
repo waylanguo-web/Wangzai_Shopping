@@ -20,7 +20,7 @@
                         @endfor
                     </div>
                     <div class="product-description">
-                        <a href="product-sidebar.html" class="product-details">
+                    <a href="{{ route('user.product-details', ['id' => $review->product->id, 'slug' => $review->product->slug ?: 'product', 'category_id' => $review->product->category_id]) }}" class="product-details">
                             {{ $review->product->name }}
                         </a>
                         <p>

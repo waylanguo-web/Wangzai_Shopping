@@ -52,8 +52,8 @@
                 </table>
             </div>
             <div class="wishlist-btn">
-                <a href="" wire:click="clearAllWishlist" class="clean-btn">{{ __('Clean Wishlist') }}</a>
-                <a href="#" class="shop-btn">{{ __('View Cards') }}</a>
+                <a href="javascript:;" wire:click="clearAllWishlist" class="clean-btn">{{ __('Clean Wishlist') }}</a>
+                <a href="{{ route('user.cart') }}" class="shop-btn">{{ __('View Cart') }}</a>
             </div>
         </div>
     </section>

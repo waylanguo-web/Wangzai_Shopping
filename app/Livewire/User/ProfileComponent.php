@@ -30,16 +30,6 @@ class ProfileComponent extends Component
             'phone_number' => 'required',
         ]);
 
-        if (!$validatedData) {
-            foreach ($validatedData as $key => $value) {
-                if ($value) {
-                    $errors[$key] = $value;
-                }
-            }
-            foreach ($errors as $key => $value) {
-                $this->addError($key, $value);
-            }
-        }
 
         $user = auth()->user();
         $user->name = $this->name;

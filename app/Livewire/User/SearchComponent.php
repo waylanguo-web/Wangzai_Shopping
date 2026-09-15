@@ -7,7 +7,7 @@ use Livewire\Component;
 
 class SearchComponent extends Component
 {
-    public $search;
+    public $search = '';
 
     public function productDetails($id, $slug, $category_id)
     {

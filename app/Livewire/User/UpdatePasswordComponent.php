@@ -16,16 +16,6 @@ class UpdatePasswordComponent extends Component
             'new_password' => 'required|min:6|same:confirm_password',
             'confirm_password' => 'required',
         ]);
-        if (!$validatedData) {
-            foreach ($validatedData as $key => $value) {
-                if ($value) {
-                    $errors[$key] = $value;
-                }
-            }
-            foreach ($errors as $key => $value) {
-                $this->addError($key, $value);
-            }
-        }
 
         $user = auth()->user();
         if (Auth::attempt(['email' => $user->email, 'password' => $this->current_password])) {

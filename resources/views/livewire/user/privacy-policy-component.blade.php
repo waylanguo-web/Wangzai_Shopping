@@ -7,7 +7,7 @@
                         <div class="about-content" data-aos="fade-up">
                             <h3 class="about-title">{{ __('Privacy Policy') }}</h3>
                             <p class="about-info">
-                                {!! $privacy_policy !!}
+                                {!! $privacy_policy ?? '' !!}
                             </p>
                         </div>
                     </div>

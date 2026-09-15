@@ -27,7 +27,7 @@
                                             <div class="ratings">
                                                 <span>
                                                     @for ($i = 0; $i < 5; $i++)
-                                                        @if ($i < $product->reviews->avg('rating'))
+                                                        @if ($i < ($product->reviews->avg('rating') ?? 0))
                                                             <i class="fa-solid fa-star" style="color: #ffc400;"></i>
                                                         @else
                                                             <i class="fa-regular fa-star"></i>

@@ -19,29 +19,16 @@ class RegisterComponent extends Component
             'confirm_password' => 'required|min:6',
         ]);
 
-        if (!$validatedData) {
-            foreach ($validatedData as $key => $value) {
-                if ($value) {
-                    $errors[$key] = $value;
-                }
-            }
-            foreach ($errors as $key => $value) {
-                $this->addError($key, $value);
-            }
-        }
-
         $user = new User();
         $user->name = $this->full_name;
         $user->email = $this->email;
         $user->phone_number = $this->phone;
         $user->password = Hash::make($this->password);
         if ($user->save()) {
-            session()->flash('success', __('Registration is successfully.'));
+            return redirect()->route('login')->with('success', __('Registration was successful, Please login to your account.'));
         } else {
             session()->flash('error', __('Something went wrong! Please try again.'));
         }
-
-        return redirect()->route('login')->with('success', __('Registration was successfull, Please login to your account.'));
     }
     public function render()
     {

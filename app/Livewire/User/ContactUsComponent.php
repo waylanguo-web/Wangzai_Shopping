@@ -25,16 +25,6 @@ class ContactUsComponent extends Component
             'message' => 'required',
         ]);
 
-        if (!$validatedData) {
-            foreach ($validatedData as $key => $value) {
-                if ($value) {
-                    $errors[$key] = $value;
-                }
-            }
-            foreach ($errors as $key => $value) {
-                $this->addError($key, $value);
-            }
-        }
 
         $contact = new Contact();
         $contact->name = $this->sender_name;
@@ -50,9 +40,16 @@ class ContactUsComponent extends Component
             'message' => $this->message,
         ];
 
-        if (Mail::to($this->setting->email)->send(new ContactMail($mall_data))) {
+        if (!$this->setting || !$this->setting->email) {
+            session()->flash('error', __('Contact email is not configured.'));
+            return;
+        }
+
+        try {
+            Mail::to($this->setting->email)->send(new ContactMail($mall_data));
             session()->flash('success', __('Your message has been sent successfully!'));
-        } else {
+        } catch (\Exception $e) {
+            \Log::warning('Contact mail failed: ' . $e->getMessage());
             session()->flash('error', __('Something went wrong!'));
         }
     }

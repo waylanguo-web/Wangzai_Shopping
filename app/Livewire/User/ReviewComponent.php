@@ -20,18 +20,11 @@ class ReviewComponent extends Component
             'review' => 'required',
         ]);
 
-        if (!$validatedData) {
-            foreach ($validatedData as $key => $value) {
-                if ($value) {
-                    $errors[$key] = $value;
-                }
-            }
-            foreach ($errors as $key => $value) {
-                $this->addError($key, $value);
-            }
-        }
-
         $review = Review::find($id);
+        if (!$review) {
+            session()->flash('error', __('Review not found.'));
+            return;
+        }
         $review->rating = $this->rating;
         $review->review = $this->review;
         if ($review->save()) {

@@ -27,7 +27,7 @@
             @enderror
         </div>
         <div class="form-btn">
-            <button class="shop-btn" type="submit">{{ __('Upldate Password') }}</button>
+            <button class="shop-btn" type="submit">{{ __('Update Password') }}</button>
         </div>
     </form>
 </div>

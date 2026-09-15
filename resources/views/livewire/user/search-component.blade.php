@@ -23,9 +23,13 @@
                         wire:click="productDetails({{ $searchResult->id }},'{{ $searchResult->slug }}','{{ $searchResult->category_id }}')"
                         class="product-details">
                         <div class="d-flex align-items-center">
-                            <img src="{{ Storage::url($searchResult->image[0]->image) }}" alt="logo" width="40px"
-                                height="40px" class="rounded">
-                            <p class="m-4">{{ $searchResult->name }}e</p>
+                            @if ($searchResult->image && $searchResult->image->isNotEmpty())
+                                <img src="{{ Storage::url($searchResult->image->first()->image) }}" alt="{{ $searchResult->name }}" width="40px"
+                                    height="40px" class="rounded">
+                            @else
+                                <span class="rounded" style="width:40px;height:40px;display:inline-flex;align-items:center;justify-content:center;background:#f0f0f0;"><i class="fa-regular fa-image"></i></span>
+                            @endif
+                            <p class="m-4">{{ $searchResult->name }}</p>
                         </div>
                     </a>
                 </li>
